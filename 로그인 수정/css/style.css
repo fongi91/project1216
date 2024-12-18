@@ -17,7 +17,7 @@ body{
 	border : none;
 	border-radius : 20px;
 	/*background-color: red;*/
-	background-image:url('././images/2.png');
+	background-image:url('../images/2.png');
 }
 .login_container{
     display: flex;
@@ -83,7 +83,7 @@ button{
 }
 
 button:hover{
-	background-image:url('././images/3.png');
+	background-image:url('../images/3.png');
 	
 	transition: 0.1s;
 }
