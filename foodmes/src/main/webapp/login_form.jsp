@@ -9,64 +9,36 @@
 <%
    //한글 처리
    request.setCharacterEncoding("UTF-8");
-
-
-
 %>    
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-
-    <title>Document</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <section>
-        <container class = "container">
-            <container class = "login_container">
-                <div class = "loginframe">
-                    <h1>OOO</h1>
-                    <h1>제조관리 프로그램</h1>
-                    
-                    <!--로그인에 사용하는 form 태그에 대한 강의 필요 -->
-                    <form id="login-form" action="./login.jsp" method="POST">
-                        <div class="id_password">
-                            <input type="text" name="user_id" id="user_id" 
-                                autocomplete="off" required><label for ="user_id">ID</label>
-                        </div>
-                        <div class="id_password">
-                            <input type="password" name="user_pwd" id="user_pwd"
-                                autocomplete="off" required><label for = "user_pwd">Password</label>
-                        </div>
-                        <button id="login-button" style="cursor: pointer;">LOGIN</button>
-                           
-                        </div>                                
-                   </form>
-                </div>  
-
-
-                <script>
-                   document.addEventListener("DOMContentLoaded", function() {   // 웹 페이지가 로딩되면 실행
-                    //const button = document.querySelector("button");  // 버튼 요소 가져오기
-                    const button = document.getElementById("login-button");  // 버튼 요소 가져오기
-                    button.addEventListener("click", function (event) {  // 버튼을 클릭하면 실행
-                         event.preventDefault();  // 기본 동작을 막음
-                         Register();   // 새로운 주제를 등록하는 함수 호출  
-                       });
-                   });
-                   
-                   
-                   function Register(){
-                      const login = document.getElementById('login-form');
-                      login.submit();
-                   }
-                </script>
-
-
-            </container>
-        </container>
-    </section>
+<section>
+<div class="container">
+<div class ="login_container">
+ <form id="login-form" action="./login.jsp" method="POST">
+<h1>로그인</h1>
+	 <div class="id_password">
+	 	<input type="text" name="user_id" id="user_id" autocomplete="off" required><label for ="user_id"></label>        
+	 </div>
+	 <div class="id_password">
+		<input type="password" name="user_pwd" id="user_pwd" autocomplete="off" required><label for = "user_pwd"></label>
+	 </div>
+<input type="checkbox" id="accept">아이디 저장
+<button id="login-button" style="cursor: pointer;">로그인</button>
+</form>
+<div class="image-container">
+    <div class="title">
+    <img src="./images/1.png" class="image1">
+    </div>
+</div>
+</div>
+</div>
+</section>
 </body>
 </html>
