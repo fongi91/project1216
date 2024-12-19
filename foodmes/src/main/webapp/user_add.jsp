@@ -16,141 +16,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Left Sidebar Menu</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
 
-        .sidebar {
-            width: 200px;
-            height: 100vh; /* Full height */
-            background-color: #3a08c2 ;
-            color: white;
-            position: fixed; /* Stay fixed on the left */
-            top: 0;
-            left: 0;
-            padding-top: 20px;
-        }
-
-        .sidebar a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            transition: background-color 0.3s;
-        }
-    
-        .sidebar a:hover {
-            background-color: #575757;
-        }
-
-        .content {
-            margin-left: 250px; /* Same as the sidebar width */
-            padding: 20px;
-        }
-        .div1{
-        	display: flex;
-        	justify-content: space-between;
-        	margin: 10px 0 10px 0;
-        	padding: 10px 0; 	
-        }
-        .div1 p{
-        	margin: 10px 0 10px 0;
-        }
-        .div1 button{
-        	background-color: black;
-        	color: white;
-        	font-weight: bold;
-        	cursor: pointer;
-        }
-        table {
-        	margin-left: 300px;
-        	border: solid white;
-        	width: 70%;
-        	border-collapse:collapse;
-
-        }
-        th {
-       		 text-align: left;
-             padding: 5px;
-             color:white;
-        	 background-color: #3a08c2;
-        	 
-        	         	
-        }
-        td {
-        	border-bottom: solid lightgrey;
-        	text-align: left;
-        	padding: 5px;
-
-
-        	
-
-        	     
-        }
-    </style>
+<title>사조떡볶이</title>
+<link rel="stylesheet" href="./css/popup_style.css">  
 </head>
 <body>
+	<form id ="search-form" action="./user_insert.jsp" method="POST">
+	<div> 	
+			<input id="id" name="id" placeholder="아이디"/>
+			<input id="passwd" name="passwd" placeholder="비밀번호"/>
+			<input id="name" name="name" placeholder="이름"/>
 
-    <div class="sidebar">
-        <h3>사조떡볶이 제조시스템</h3>
-        <a href="./user_manage.jsp">사용자관리</a>
-        <a href="#about">제품기준관리</a>
-        <a href="#services">자재기준관리</a>
-        <a href="#contact">Version</a>
-    </div>
+			<input id="sabun" name="sabun" placeholder="사번"/>
+			<input id="depart_nm" name="depart_nm" placeholder="부서"/> 
+			<input id="jik_nm" name="jik_nm" placeholder="직급"/>
 
-    <div class="content">
-        <h1>사용자관리</h1>
-        <hr>
-        <div class="div1" >
-        	<p> ※사용자 수정을 원하시는 분은 관리자에게 문의하시기 바랍니다. </p>
-        	<button href="#insert">사용자추가</button>
-    	</div>
+			<input id="email" name="email" placeholder="이메일"/>
+			<input id="mobile" name="mobile" placeholder="휴대전화번호"/>
+			<input id="write_id" name="write_id" placeholder="등록자"/>
+	
     </div>
-    
+	<div>
+		<button>등록</button>
+	</div>
+	</form>
 
-    	<table>
-    	 	<tr>
-    			<th>ID</th>
-    			<th>사원번호</th>
-    			<th>부서번호</th>
-    			<th>직급</th>
-    			<th>mobile</th>
-    		</tr>
-    	
-    	<%
-    	
-    		Connection conn = DBManager.getDBConnection();
-    		String sql = "SELECT LOGIN_ID, SABUN_ID, DEPART_NM, JIK_NM, MOBILE_NO "
-    				+ " FROM MEUSER ORDER BY SABUN_ID";
-    		
-    		try{
-    			PreparedStatement pstmt = conn.prepareStatement(sql);
-    			
-    			ResultSet rs = pstmt.executeQuery();
-    			while(rs.next()){
-    	%>
-    	<tr>
-    		<td><%= rs.getString("LOGIN_ID") %></td>
-    		<td><%= rs.getString("SABUN_ID") %></td>
-    		<td><%= rs.getString("DEPART_NM") %></td>
-    		<td><%= rs.getString("JIK_NM") %></td>
-    		<td><%= rs.getString("MOBILE_NO") %></td>
-    	</tr>
-    	<%
-    			}
-    			//자원정리
-    		DBManager.dbClose(conn, pstmt, rs);
-    		} catch(SQLException se) {
-    			se.printStackTrace();
-    			System.err.println("테이블 조회 에러");
-    		}
-    		 %>
-    	</table>
-    </div>
-     
 </body>
 </html>

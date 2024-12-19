@@ -25,8 +25,8 @@
         <h3><a href="./main.jsp">사조떡볶이 제조시스템</a></h3>
         <div class = "sidebar1">
         	<a href="./user_manage.jsp">사용자관리</a>
-        	<a href="#about">제품기준관리</a>
-        	<a href="#services">자재기준관리</a>
+        	<a href="./product_manage.jsp">제품기준관리</a>
+        	<a href="./material_manage.jsp">자재기준관리</a>
         	<a href="#contact">Version</a>
         </div>
     </div>

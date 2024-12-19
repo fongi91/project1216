@@ -19,72 +19,78 @@
 
 <title>사조떡볶이</title>
 <link rel="stylesheet" href="./css/main_style.css"> 
-    <style>
-        table {
-        	margin-left: 300px;
-        	border: solid white;
-        	width: 70%;
-        	border-collapse:collapse;
-        }
-        th {
-       		 text-align: left;
-             padding: 5px;
-             color:white;
-        	 background-color: #3a08c2;         	
-        }
-        td {
-        	border-bottom: solid lightgrey;
-        	text-align: left;
-        	padding: 5px;    
-        }
-        .right-side{
-        	display: flex;
-        	justify-content: space-between;
-        }
-    </style> 
+<style>      
+</style> 
 </head>
 <body>
-
     <div class="sidebar">
         <h3><a href="./main.jsp">사조떡볶이 제조시스템</a></h3>
         <div class = "sidebar1">
         	<a href="./user_manage.jsp">사용자관리</a>
-        	<a href="#about">제품기준관리</a>
-        	<a href="#services">자재기준관리</a>
+        	<a href="./product_manage.jsp">제품기준관리</a>
+        	<a href="./material_manage.jsp">자재기준관리</a>
         	<a href="#contact">Version</a>
         </div>
     </div>
-
     <div class="content">
-        <h1>사용자관리</h1>
+    	<div>
+        	<h1>사용자관리</h1>
+        	<div class = button>
+        		<button id = "user_add_button">사용자생성</button>
+        	</div> 	
+        </div>
+        
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {   // 웹 페이지가 로딩되면 실행
+            const button = document.getElementById("user_add_button");  // 버튼 요소 가져오기
+            button.addEventListener("click", function () {  // 버튼을 클릭하면 실행
+              	window.open("./user_add.jsp", "팝업창이름", "width=650, height=500, left=100, top=200");
+              	// newRegister();   // 새로운 주제를 등록하는 함수 호출  
+            	});
+        });
+        </script>
+        
+        
+        
         <hr>
+        
+        
+        
 	    <div class="right-side">
 	      <form action="#">
 	        show
 	        <select name="numb" id="numb">
-	            <option value ="25" seleted>25</option>
+	            <option value ="25" selected>25</option>
 	            <option value ="50">50</option>
 	            <option value ="100">100</option>
 	        </select>
 	        entries
 	      </form>
-	      <span>
-	           <input class="searchbox" type="search" id="search" placeholder="이름을 입력하세요"'>
-	           <button>검색</button>
-	      </span>
+	      
+	      <!-- ******************** 이부분 추가하시면 됩니다.(각 구역별 select 모두 출력되는 코드에서 수정하시는겁니다.)******************** 
+	      form 태그 생성 후 action="./검색결과 출력 할 페이지" method="POST" 
+	      input 태그 작성 간 name을 잘 써주세요. 출력페이지에서 받아와야됩니다. -->
+	        <form id ="search-form" action="./user_search.jsp" method="POST">
+	        	 <span class="search">
+					<input class="searchbox" type="search" id="search" name="search1" placeholder="이름을 입력하세요">
+					<button class="search-button"></button>
+				</span>
+            </form>	
+	        
+	     
 	    </div>
 	</div>
 	   
 
 
-	<div>
+	<div class="table_contain">
     	<table>
     	 	<tr>
 				<th>NO</th>
     			<th>ID</th>
     			<th>이름</th>
     			<th>사원번호</th>
-    			<th>부서번호</th>
+    			<th>부서</th>
     			<th>직급</th>
     			<th>mobile</th>
     			 <th>등록자</th>
@@ -95,7 +101,8 @@
     		</tr>
     	
     	<%
-    	
+    		// DBManager.getDBConnection() 을 호출하여 데이터베이스 연결을 시도하고, 그 결과를 
+    		// conn 변수에 저장한다.
     		Connection conn = DBManager.getDBConnection();
     		String sql = "SELECT rownum AS ROWNO, LOGIN_ID, LOGIN_NAME, SABUN_ID, DEPART_NM, JIK_NM, MOBILE_NO, "
     				+ " WRITE_ID, to_char(write_dt, 'YYYY/MM/DD HH24:MI:SS') AS WRITE_DT FROM MEUSER ORDER BY LOGIN_ID";
@@ -107,7 +114,7 @@
     			while(rs.next()){
     	%>
     	<tr>
-    	    <td><%= rs.getString("ROWNO") %></td>
+    	    <td><%= rs.getInt("ROWNO") %></td>
     		<td><%= rs.getString("LOGIN_ID") %></td>
     		<td><%= rs.getString("LOGIN_NAME") %></td>
     		<td><%= rs.getString("SABUN_ID") %></td>
@@ -116,7 +123,6 @@
     		<td><%= rs.getString("MOBILE_NO") %></td>
     		<td><%= rs.getString("WRITE_ID") %></td>
     		<td><%= rs.getString("WRITE_DT") %></td>
-
     	</tr>
     	<%
     			}
@@ -130,6 +136,5 @@
     	</table>
     </div>
 
-     
 </body>
 </html>

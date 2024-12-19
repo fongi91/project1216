@@ -25,6 +25,7 @@
 <h1>로그인</h1>
 	 <div class="id_password">
 	 	<input type="text" name="user_id" id="user_id" autocomplete="off" required><label for ="user_id"></label>        
+
 	 </div>
 	 <div class="id_password">
 		<input type="password" name="user_pwd" id="user_pwd" autocomplete="off" required><label for = "user_pwd"></label>
