@@ -40,15 +40,9 @@
         	</div> 	
         </div>
         
-        <script>
-        document.addEventListener("DOMContentLoaded", function() {   // 웹 페이지가 로딩되면 실행
-            const button = document.getElementById("user_add_button");  // 버튼 요소 가져오기
-            button.addEventListener("click", function () {  // 버튼을 클릭하면 실행
-              	window.open("./user_add.jsp", "팝업창이름", "width=650, height=500, left=100, top=200");
-              	// newRegister();   // 새로운 주제를 등록하는 함수 호출  
-            	});
-        });
-        </script>
+        
+
+
         
         
         
@@ -57,15 +51,16 @@
         
         
 	    <div class="right-side">
-	      <form action="#">
-	        show
-	        <select name="numb" id="numb">
-	            <option value ="25" selected>25</option>
-	            <option value ="50">50</option>
-	            <option value ="100">100</option>
-	        </select>
-	        entries
-	      </form>
+	    
+	     <form action="user_manage.jsp" method="GET">
+    show
+    <select name="numb" id="numb" onchange="this.form.submit()">
+        <option value="10" <% if ("10".equals(request.getParameter("numb"))) out.print("selected"); %>>10</option>
+        <option value="20" <% if ("20".equals(request.getParameter("numb"))) out.print("selected"); %>>20</option>
+        <option value="30" <% if ("30".equals(request.getParameter("numb"))) out.print("selected"); %>>30</option>
+    </select>
+    entries
+</form>
 	      
 	      <!-- ******************** 이부분 추가하시면 됩니다.(각 구역별 select 모두 출력되는 코드에서 수정하시는겁니다.)******************** 
 	      form 태그 생성 후 action="./검색결과 출력 할 페이지" method="POST" 
@@ -93,23 +88,28 @@
     			<th>부서</th>
     			<th>직급</th>
     			<th>mobile</th>
-    			 <th>등록자</th>
-    			 <th>등록일시</th>
+    			<th>등록자</th>
+    			<th>등록일시</th>
+    			<th>비고</th>
 
   
     			
     		</tr>
     	
     	<%
+    	// 페이지 크기 설정 (기본값 25)
+        String postCountStr = request.getParameter("numb");
+        int postCount = (postCountStr != null) ? Integer.parseInt(postCountStr) : 10;  // 기본값은 10
     		// DBManager.getDBConnection() 을 호출하여 데이터베이스 연결을 시도하고, 그 결과를 
     		// conn 변수에 저장한다.
     		Connection conn = DBManager.getDBConnection();
     		String sql = "SELECT rownum AS ROWNO, LOGIN_ID, LOGIN_NAME, SABUN_ID, DEPART_NM, JIK_NM, MOBILE_NO, "
-    				+ " WRITE_ID, to_char(write_dt, 'YYYY/MM/DD HH24:MI:SS') AS WRITE_DT FROM MEUSER ORDER BY LOGIN_ID";
+                    + " WRITE_ID, to_char(write_dt, 'YYYY/MM/DD HH24:MI:SS') AS WRITE_DT "
+                    + " FROM MEUSER WHERE rownum <= ?";
     		
     		try{
     			PreparedStatement pstmt = conn.prepareStatement(sql);
-    			
+                pstmt.setInt(1, postCount);  // 선택한 개수만큼 결과 제한	
     			ResultSet rs = pstmt.executeQuery();
     			while(rs.next()){
     	%>
@@ -123,6 +123,8 @@
     		<td><%= rs.getString("MOBILE_NO") %></td>
     		<td><%= rs.getString("WRITE_ID") %></td>
     		<td><%= rs.getString("WRITE_DT") %></td>
+    		<td><button>수정</button><button id = "user_delete_button">삭제</button></td>
+    	
     	</tr>
     	<%
     			}
@@ -135,6 +137,38 @@
     		 %>
     	</table>
     </div>
+    
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {   // 웹 페이지가 로딩되면 실행
+            const button = document.getElementById("user_add_button");  // 버튼 요소 가져오기
+            button.addEventListener("click", function () {  // 버튼을 클릭하면 실행
+              	window.location.href = './user_add.jsp';
+              	// window.open("./user_add.jsp", "팝업창이름", "width=650, height=500, left=100, top=200");
+              	// newRegister();   // 새로운 주제를 등록하는 함수 호출  
+            	});
+            
+            const button1 = document.getElementById("user_delete_button");  // 버튼 요소 가져오기
+            button1.addEventListener("click", function () {  // 버튼을 클릭하면 실행
+              	window.location.href = './user_delete.jsp';
+              	// window.open("./user_add.jsp", "팝업창이름", "width=650, height=500, left=100, top=200");
+              	// newRegister();   // 새로운 주제를 등록하는 함수 호출  
+            	});
+            
+            
+        });
+        
+ 
+        
+        
+        
+        
+    </script>
+    
+    
+    
+    
+    
 
 </body>
 </html>

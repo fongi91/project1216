@@ -56,7 +56,6 @@
 		alert("사용자 입력이 완료되었습니다.");
 	} else{
 		alert("사용자 입력에 실패하였습니다.");
-		response.sendRedirect("./user_manage.jsp");	
 	}
-	window.close();
+	window.location.href = './user_manage.jsp';
 </script>

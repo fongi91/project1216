@@ -57,7 +57,7 @@
     <div class="content">
     	<div>
         	<h1>제품기준관리</h1>
-        	<form id="create-form" action="./product_create.jsp" method="POST">
+        	<form id="create-form" action="./product_add.jsp" method="POST">
         		<button class="create-button">추가</button>
         	</form> 	
         </div>
