@@ -105,7 +105,7 @@
     					%>			
     			    	<tr>
     			    	    <td><%= rs.getInt("ROWNO") %></td>
-    			    		<td><%= rs.getString("LOGIN_ID") %></td>
+    			    		<td> <a href="user_change.jsp?login_id=<%= rs.getString("LOGIN_ID") %>"> <%= rs.getString("LOGIN_ID") %> </a> </td>	
     			    		<td><%= rs.getString("LOGIN_NAME") %></td>
     			    		<td><%= rs.getString("SABUN_ID") %></td>
     			    		<td><%= rs.getString("DEPART_NM") %></td>

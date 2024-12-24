@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>사조떡볶이</title>
-<link rel="stylesheet" href="./css/insert_style.css">  
+<link rel="stylesheet" href="./css/crud_style.css">  
 </head>
 <body>
 <body>
@@ -47,7 +47,7 @@
 			<div class="essential_in">
 			  	<h2>필수정보(ID / Password)</h2>
 			  	<hr>
-			  	<!-- wrap을 걸어서 화면이 커지면 옆으로, 작아지면 밑으로 가지도록 구성 -->
+			  	
 			  	<div class = "box">
 			  		<div>
 			  			<p class="table_nm">ID</p>

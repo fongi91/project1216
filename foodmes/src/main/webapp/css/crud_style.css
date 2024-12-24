@@ -1,0 +1,128 @@
+*{
+   box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    width: 200px;
+    height: 100vh; /* Full height */
+   
+    background-color: #575757;
+    color: white;
+    position: fixed; /* Stay fixed on the left */
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+}
+
+.sidebar a{
+   display: block;
+   text-decoration: none;
+   color: white;    
+}
+
+.sidebar .sidebar1 a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+.sidebar .sidebar1 a:hover {
+    background-color: #d1740a;
+    
+}
+
+.content {
+    margin-left: 250px; /* Same as the sidebar width */
+    padding: 20px;
+}
+
+hr{
+   width: 100%;
+}
+
+
+.content div {
+   display: flex;
+    align-items: center;
+}          
+   
+   
+   
+.create_contain{
+       
+    padding: 20px;
+     margin-left: 250px;      
+}
+
+.box{
+   display: flex;
+   flex-wrap: nowrap;
+   height: 100px;
+   width: 90%;
+   text-align: center;
+   margin-top: 20px;
+}
+
+.register_button{
+   margin-right: 20px;
+   width: 600px;
+   height: 50px;
+   background-color: black;
+   color: white;
+   cursor: pointer;
+   border-radius: 10px; 
+   }
+
+.table_nm{
+   margin: 5px;
+   width: 100px;
+   text-align: left;
+}
+
+.input_in:focus{
+   background-color: white;
+   border: 0.5px solid black;
+}
+
+
+.input_in{
+	
+   margin-right: 20px;
+   padding-left: 20px;
+   width: 600px;
+   height: 40px;
+   font-size: 20px;
+   border-radius: 8px;
+   background-color: rgb(228, 236, 247);
+   border: none;
+}
+
+.input_in:hover {
+   border: 3px solid rgb(177, 208, 250);
+}
+
+.register_button{
+   background-color: black;
+   color: white;
+   cursor: pointer;
+   border-radius: 10px;
+   }
+   
+#write_id {
+   background-color: rgb(197, 198, 216);
+   cursor: not-allowed;
+}   
+
+
+#write_dt {
+   background-color: rgb(197, 198, 216);
+   cursor: not-allowed;
+
+}
+

@@ -166,7 +166,7 @@
             %>
             <tr>
                 <td><%= rs.getInt("ROWNO") %></td>
-                <td><%= rs.getString("MAT_CD") %></td>
+                <td> <a href="material_change.jsp?MATCD=<%= rs.getString("MAT_CD") %>"><%= rs.getString("MAT_CD") %></a></td>
                 <td><%= rs.getString("MAT_NM") %></td>
                 <td><%= rs.getString("STAND_CALL") %></td>
                 <td><%= rs.getString("WEIGHT_CALL") %></td>

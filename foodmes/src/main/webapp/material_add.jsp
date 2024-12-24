@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>사조떡볶이</title>
-<link rel="stylesheet" href="./css/insert_style.css">  
+<link rel="stylesheet" href="./css/crud_style.css">  
 <style>
 #write_id {
 

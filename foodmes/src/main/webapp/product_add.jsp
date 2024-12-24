@@ -18,153 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>사조떡볶이</title>
-<style>
-
-
-
-*{
-   box-sizing: border-box;
-
-}
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-.sidebar {
-    width: 200px;
-    height: 100vh; /* Full height */
-   
-    background-color: #575757;
-    color: white;
-    position: fixed; /* Stay fixed on the left */
-    top: 0;
-    left: 0;
-    padding-top: 20px;
-}
-
-.sidebar a{
-   display: block;
-   text-decoration: none;
-   color: white;    
-}
-
-.sidebar .sidebar1 a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    transition: background-color 0.3s;
-}
-
-.sidebar .sidebar1 a:hover {
-    background-color: #d1740a;
-    
-}
-
-.content {
-    margin-left: 250px; /* Same as the sidebar width */
-    padding: 20px;
-}
-
-hr{
-   width: 100%;
-}
-
-
-.content div {
-   display: flex;
-   justify-content: space-between;
-    align-items: center;
-}          
-   
-   
-   
-.create_contain{
-       
-    padding: 20px;
-     margin-left: 250px;
-       
-}
-
-
-.box{
-   display: flex;
-   justify-content: center;
-   margin-top :20px;
-}
-
-.box1{
-   margin-right:20px;
-}
-
-.register_button {
-   width: 450px;
-   height: 50px;
-
-}
-
-.table_nm{
-   
-   
-   margin: 5px;
-   width: 100px;
-
-}
-
-
-.input_in:focus{
-
-   background-color: white;
-   border: 0.5px solid black;
-}
-
-
-.input_in{
-   padding-left: 20px;
-   width: 450px;
-   height: 40px;
-   font-size: 20px;
-   border-radius: 8px;
-   background-color: rgb(228, 236, 247);
-   border: none;
-}
-
-.input_in:hover {
-   
-   border: 3px solid rgb(177, 208, 250);
-
-}
-
-
-.register_button{
-   
-   background-color: black;
-   color: white;
-   cursor: pointer;
-   border-radius: 10px;
-   
-   }
-
-#write_id {
-
-   background-color: rgb(197, 198, 216);
-   cursor: cursor;
-
-}   
-
-
-#write_dt {
-
-   background-color: rgb(197, 198, 216);
-   cursor: cursor;
-
-}
-
-   
-
-       
-</style> 
+<link rel="stylesheet" href="./css/crud_style.css">  
 </head>
 <body>
 <form id ="search-form" action="./product_insert.jsp" method="POST">
@@ -180,75 +34,72 @@ hr{
 
     <div class="content">
        <div>
-           <h1>제품 추가</h1>      
+           <h1>제품기준관리</h1>      
         </div>
-        <hr>
-        
+        <hr>    
         </div>
       
-
-
    <div class="create_contain">
    
        <div class="essential_in">
-       <h2>필수정보</h2>
-       <hr class="hr">
-       <div class="box">
-       <div class="box1">
-       <p class="table_nm">제품코드</p>     
-       <input class="input_in" id="item_cd" name="item_cd">
-       </div>
-       <div class="box1">
-       <p class="table_nm">제품명</p>
-       <input class="input_in" id="item_nm" name="item_nm">
-       </div>
-       </div>
+       	<h2>필수정보</h2>
+       	<hr class="hr">
+       	<div class="box">
+       		<div class="box1">
+       			<p class="table_nm">제품코드</p>     
+       			<input class="input_in" id="item_cd" name="item_cd">
+       		</div>
+       		<div class="box1">
+       			<p class="table_nm">제품명</p>
+       			<input class="input_in" id="item_nm" name="item_nm">
+       		</div>
+       	</div>
        </div>
        
        <div class="detail_in">
-       <h2>상세정보</h2>
-       <hr class="hr">
+       	<h2>상세정보</h2>
+       	<hr class="hr">
+       	<div class="box">
+       		<div class="box1">
+       			<p class="table_nm">규격</p>
+       			<input class="input_in" id="item_stand" name="item_stand">
+       		</div>
+       		<div class="box1">
+        		<p class="table_nm">단가</p>
+       			<input class="input_in" id="item_price" name="item_price">
+       		</div>
+       	</div>
+       <br>
        <div class="box">
-       <div class="box1">
-       <p class="table_nm">규격</p>
-       <input class="input_in" id="item_stand" name="item_stand">
-       </div>
-       <div class="box1">
-        <p class="table_nm">단가</p>
-       <input class="input_in" id="item_price" name="item_price">
-       </div>
+       	<div class="box1">
+       		<p class="table_nm">외주단가</p>
+       		<input class="input_in" id="cust_price" name="cust_price">
+       	</div>
+       	<div class="box1">
+       		<p class="table_nm">비고</p>
+       		<input class="input_in" id="bigo" name="bigo">
+       	</div>
        </div>
        <br>
        <div class="box">
-       <div class="box1">
-       <p class="table_nm">외주단가</p>
-       <input class="input_in" id="cust_price" name="cust_price">
-       </div>
-       <div class="box1">
-       <p class="table_nm">비고</p>
-       <input class="input_in" id="bigo" name="bigo">
-       </div>
-       </div>
-       <br>
-       <div class="box">
-       <div class="box1">
-       <p class="table_nm">등록자</p>
-       <input class="input_in" id="write_id" name="write_id" disabled>  
-       </div>
-       <div class="box1">
-       <p class="table_nm">등록일시</p>
-       <input class="input_in" id="write_dt" name="write_dt" disabled>      
-       </div>
+       	<div class="box1">
+       		<p class="table_nm">등록자</p>
+       		<input class="input_in" id="write_id" name="write_id">  
+       	</div>	
+       	<div>	
+       		<p class="table_nm">등록일시</p>
+       		<input class="input_in" id="write_dt" name="write_dt">      
+       	</div>
        </div>
        <br>
+       
        <div class="box">
-       <div class="box1">
-       <button class="register_button">추가</button>
-       </div>
-       <div class="box1">
-       <button class="register_button">취소</button>
-       </div>
-
+      	 <div class="box1">
+       		<button class="register_button">저장</button>
+       	</div>
+       	<div class="box1">
+       		<button class="register_button">닫기</button>
+       	</div>
        </div>
        </div>
        </div>
