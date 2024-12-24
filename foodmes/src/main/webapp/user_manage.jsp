@@ -65,33 +65,7 @@
 <title>사조떡볶이</title>
 <link rel="stylesheet" href="./css/main_style.css"> 
 <style>
-         .button {
-            margin: 20px;
-        }
-
-        .button-container {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-        }
-
-        .pagination {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .pagination a {
-            margin: 0 5px;
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            text-decoration: none;
-            color: #000;
-        }
-
-        .pagination a.active {
-            background-color: #575757; 
-            color: white;
-        }
+    
 </style>   
 </head>
 <body>
@@ -108,7 +82,7 @@
     	<div>
         	<h1>사용자관리</h1>
         	<div class = button>
-        		<button id = "user_add_button" >사용자생성</button>
+        		<button id = "user_add_button" >사용자 생성</button>
         	</div> 	
         </div>
             
@@ -122,8 +96,8 @@
     show
     <select name="numb" id="numb" onchange="this.form.submit()">
         <option value="10" <% if ("10".equals(request.getParameter("numb"))) out.print("selected"); %>>10</option>
-        <option value="50" <% if ("50".equals(request.getParameter("numb"))) out.print("selected"); %>>50</option>
-        <option value="100" <% if ("100".equals(request.getParameter("numb"))) out.print("selected"); %>>100</option>
+        <option value="20" <% if ("20".equals(request.getParameter("numb"))) out.print("selected"); %>>20</option>
+        <option value="30" <% if ("30".equals(request.getParameter("numb"))) out.print("selected"); %>>30</option>
     </select>
     entries
 </form>      

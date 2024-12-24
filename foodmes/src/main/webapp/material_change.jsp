@@ -110,71 +110,78 @@
 		<div class="create_contain">
 			<div class="essential_in">
 			  	<h2>필수정보</h2>
-			  	<hr>
+			  	<hr class="hr">
 			  	<div class = "box">
-			  		<div>
+			  		<div class="box1">
 			  			<p class="table_nm">자재코드</p>
 			  			<input class = "input_in" id="Matcd" name="Matcd" autofocus value="<%= cmatcd  %>"/>
 			  		</div>
-			  		<div>
+			  		<div class="box1">
 			  			<p class="table_nm">자재명</p>
 						<input class = "input_in" id="Matnm" name="Matnm" autofocus value="<%= cmatnm   %>"/>
 			  		</div>	  		
-			  	</div>
+				</div>
 			</div>
-			<br><br><br><br>
+		
 			
 			
 			<div class="detail_in">
 				<h2>상세정보</h2>
-				<hr>
-				<div class="box">
-					<div>
-				  		<p class="table_nm">규격</p>
-						<input class = "input_in" id="Standcall" name="Standcall" autofocus value="<%= cstandcall   %>"/>
+				<hr class="hr">
+					<div class="box">
+						<div class="box1">
+				  			<p class="table_nm">규격</p>
+							<input class = "input_in" id="Standcall" name="Standcall" autofocus value="<%= cstandcall   %>"/>
+						</div>
+						<div class="box1">	
+				  			<p class="table_nm">규격정보</p>
+							<input class = "input_in" id="Standbigo" name="Standbigo" autofocus value="<%= cstandbigo   %>"/>
+						</div>
 					</div>
-					<div>	
-				  		<p class="table_nm">규격정보</p>
-						<input class = "input_in" id="Standbigo" name="Standbigo" autofocus value="<%= cstandbigo   %>"/>
-					</div>
-				</div>
-				<div class="box">	
-				  	<div>
-				  		<p class="table_nm">중량</p>
-						<input class = "input_in" id="Weightcall" name="Weightcall" autofocus value="<%= cweightcall   %>"/>
+					<div class="box">	
+				  		<div class="box1">
+				  			<p class="table_nm">중량</p>
+							<input class = "input_in" id="Weightcall" name="Weightcall" autofocus value="<%= cweightcall   %>"/>
+						</div>	
+						<div class="box1">
+							<p class="table_nm">자재처</p>
+							<input class = "input_in" id="Custcd" name="Custcd" autofocus value="<%= ccustcd   %>"/>
+						</div>
 					</div>	
-					<div>
-						<p class="table_nm">자재처</p>
-						<input class = "input_in" id="Custcd" name="Custcd" autofocus value="<%= ccustcd   %>"/>
+					<div class="box">
+						<div class="box1">
+							<p class="table_nm">입고단가</p>
+							<input class = "input_in" id="Inprice" name="Inprice" autofocus value="<%= cinprice   %>"/>
+						</div>	
+						<div class="box1">
+							<p class="table_nm">비고</p>
+							<input class = "input_in" id="Bigo" name="Bigo" autofocus value="<%= cbigo  %>"/>
+						</div>
 					</div>
-				</div>	
-				<div class="box">
-					<div>
-						<p class="table_nm">입고단가</p>
-						<input class = "input_in" id="Inprice" name="Inprice" autofocus value="<%= cinprice   %>"/>
-					</div>	
-					<div>
-						<p class="table_nm">비고</p>
-						<input class = "input_in" id="Bigo" name="Bigo" autofocus value="<%= cbigo  %>"/>
-					</div>
-				</div>
-				<div class="box">	
-					<div>
-						<p class="table_nm">등록자</p>
-						<input class = "input_in" id="write_id" name="write_id" autofocus value="<%= cWriteid  %>"/>
-					</div>
-					<div>
-						<p class="table_nm">등록날짜</p>
-						<input class = "input_in" id="write_dt" name="write_dt" autofocus value="<%= cWritedt  %>"/>
+					<div class="box">	
+						<div class="box1">
+							<p class="table_nm">등록자</p>
+							<input class = "input_in" id="write_id" name="write_id" autofocus value="<%= cWriteid  %>" disabled/>
+						</div>
+						<div class="box1">
+							<p class="table_nm">등록날짜</p>
+							<input class = "input_in" id="write_dt" name="write_dt" autofocus value="<%= cWritedt  %>" disabled/>
+						</div>
 					</div>	 	 
+					<div class="box">
+       					<div class="box1">
+       						<button class="register_button" id="material_update_button" >수정</button>
+       					</div>
+      					<div class="box1">
+      						<button class="register_button" id="material_delete_button" >삭제</button>
+      					</div>
+      					<div class="box1">
+      						<button class="register_button" id="material_cancle_button" >취소</button>
+      					</div>
+      				</div>
 				</div>
 			</div>
-		<button id="user_update_button" class="register_button">수정</button>
-		<button id="user_delete_button" class="register_button">삭제</button>
-    </div>
     
-    
--
 		<script>
         document.addEventListener("DOMContentLoaded", function(event) {   // 웹 페이지가 로딩되면 실행
             const updateButton = document.getElementById("user_update_button");  // 버튼 요소 가져오기

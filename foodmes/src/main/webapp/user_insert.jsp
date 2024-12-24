@@ -53,9 +53,9 @@
 %>
 <script>
 	if(<%= rows %> == 1){
-		alert("사용자입력이 완료되었습니다.");
+		alert("사용자 입력이 완료되었습니다.");
 	} else{
-		alert("필수항목미입력으로 사용자입력에 실패하였습니다.");
+		alert("사용자 입력에 실패하였습니다.");
 	}
 	window.location.href = './user_manage.jsp';
 </script>

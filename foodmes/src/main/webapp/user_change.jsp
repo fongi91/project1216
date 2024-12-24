@@ -84,155 +84,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>사조떡볶이</title>
 <link rel="stylesheet" href="./css/crud_style.css">  
-<style>
-*{
-   box-sizing: border-box;
-}
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-.sidebar {
-    width: 200px;
-    height: 100vh; /* Full height */
-   
-    background-color: #575757;
-    color: white;
-    position: fixed; /* Stay fixed on the left */
-    top: 0;
-    left: 0;
-    padding-top: 20px;
-}
-
-.sidebar a{
-   display: block;
-   text-decoration: none;
-   color: white;    
-}
-
-.sidebar .sidebar1 a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    transition: background-color 0.3s;
-}
-
-.sidebar .sidebar1 a:hover {
-    background-color: #d1740a;
-    
-}
-
-.content {
-    margin-left: 250px; /* Same as the sidebar width */
-    padding: 20px;
-}
-
-hr{
-   width: 100%;
-}
-
-
-.content div {
-   display: flex;
-    align-items: center;
-}          
-   
-   
-   
-.create_contain{
-       
-    padding: 20px;
-     margin-left: 250px;      
-}
-
-
-.box{
-   background-color: blue;
-   /*
-   justify-content: space-between;
-   display: flex;
-   flex-wrap: wrap; */
-   height: 100px;
-   width: 100%;
-   text-align: center;
-   margin-top: 20px;
-}
-.box div{
-width: 40%;
-}
-
-.register_button{
-   margin-right: 20px;
-   width: 600px;
-   height: 50px;
-   background-color: black;
-   color: white;
-   cursor: pointer;
-   border-radius: 10px; 
-   }
-
-.table_nm{
-   margin: 5px;
-   width: 100px;
-   text-align: left;
-}
-
-.input_in:focus{
-   background-color: white;
-   border: 0.5px solid black;
-}
-
-
-.input_in{
-	
-   margin-right: 20px;
-   padding-left: 20px;
-   width: 100%;
-   height: 40px;
-   font-size: 20px;
-   border-radius: 8px;
-   background-color: rgb(228, 236, 247);
-   border: none;
-}
-
-.input_in:hover {
-   border: 3px solid rgb(177, 208, 250);
-}
-
-.register_button{
-   background-color: black;
-   color: white;
-   cursor: pointer;
-   border-radius: 10px;
-   }
-   
-#write_id {
-   background-color: rgb(197, 198, 216);
-   cursor: not-allowed;
-}   
-
-
-#write_dt {
-   background-color: rgb(197, 198, 216);
-   cursor: not-allowed;
-
-}
-   
-
-</style>
-
 </head>
-
-
-
-
-
-
-
 <body>
-
 
     <div class="sidebar">
         <h3><a href="./main.jsp">사조떡볶이 제조시스템</a></h3>
@@ -252,73 +105,82 @@ width: 40%;
  	</div>
  	   
 	<form id ="changeForm" method="POST">
+	
 		<div class="create_contain">
 			<div class="essential_in">
 			  	<h2>필수정보(ID / Password)</h2>
-			  	<hr>
+			  	<hr class="hr">
 			  	<div class = "box">
-			  		<div>
+			  		<div class="box1">
 			  			<p class="table_nm">ID</p>
 			  			<input class = input_in id="loginid" name="loginid" autofocus value="<%= cuserId %>"/>
 			  		</div>
-			  		<div>
+			  		<div class="box1">
 			  			<p class="table_nm">Password</p>
 						<input class = input_in id="passwd" name="passwd" autofocus value="<%= cuserPassword %>"/>
 			  		</div>	  		
 			  	</div>
 			</div>
-			<br><br><br><br>
+			
 			
 			
 			<div class="detail_in">
 				<h2>상세정보</h2>
 				<hr>
 				<div class="box">
-					<div>
+					<div class="box1">
 				  		<p class="table_nm">이름</p>
 						<input class = input_in id="name" name="name" autofocus value="<%= cuserName %>"/>
 					</div>
-					<div>	
+					<div class="box1">	
 				  		<p class="table_nm">사번</p>
 						<input class = input_in id="sabun" name="sabun" autofocus value="<%= cuserSabun %>"/>
 					</div>
 				</div>
 				<div class="box">	
-				  	<div>
+				  	<div class="box1">
 				  		<p class="table_nm">부서</p>
 						<input class = input_in id="depart_nm" name="depart_nm" autofocus value="<%= cuserDepartnm %>"/>
 					</div>	
-					<div>
+					<div class="box1">
 						<p class="table_nm">직급</p>
 						<input class = input_in id="jik_nm" name="jik_nm" autofocus value="<%= cuserJiknm %>"/>
 					</div>
 				</div>	
 				<div class="box">
-					<div>
+					<div class="box1">
 						<p class="table_nm">이메일</p>
 						<input class = input_in id="email" name="email" autofocus value="<%= cuserEmail %>"/>
 					</div>	
-					<div>
+					<div class="box1">
 						<p class="table_nm">휴대전화번호</p>
 						<input class = input_in id="mobile" name="mobile" autofocus value="<%= cuserMobile %>"/>
 					</div>
 				</div>
 				<div class="box">	
-					<div>
+					<div class="box1">
 						<p class="table_nm">등록자</p>
-						<input class = input_in id="write_id" name="write_id" autofocus value="<%= cuserWriteid %>"/>
+						<input class = input_in id="write_id" name="write_id" autofocus value="<%= cuserWriteid %>" disabled/>
 					</div>
-					<div>
+					<div class="box1">
 						<p class="table_nm">등록날짜</p>
-						<input class = input_in id="write_dt" name="write_dt" autofocus value="<%= cuserWritedt %>"/>
+						<input class = input_in id="write_dt" name="write_dt" autofocus value="<%= cuserWritedt %>" disabled/>
 					</div>	 	 
 				</div>
-			</div>
-		<button id="user_update_button" class="register_button">수정</button>
-		<button id="user_delete_button" class="register_button">삭제</button>
-    </div>
-    
-    
+			
+				<div class="box">	
+					<div class="box1">
+						<button class="register_button" id="user_update_button">수정</button>
+					</div>
+					<div class="box1">
+						<button class="register_button" id="user_delete_button">삭제</button>
+   					</div>
+   					<div class="box1">
+      					<button class="register_button" id="user_cancle_button" >취소</button>
+      				</div>
+   				</div>
+   			</div>
+   		</div>
 -
 		<script>
         document.addEventListener("DOMContentLoaded", function(event) {   // 웹 페이지가 로딩되면 실행

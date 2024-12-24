@@ -1,5 +1,6 @@
 *{
    box-sizing: border-box;
+
 }
 body {
     margin: 0;
@@ -9,7 +10,6 @@ body {
 .sidebar {
     width: 200px;
     height: 100vh; /* Full height */
-   
     background-color: #575757;
     color: white;
     position: fixed; /* Stay fixed on the left */
@@ -49,53 +49,55 @@ hr{
 
 .content div {
    display: flex;
-    align-items: center;
+   justify-content: space-between;
+   align-items: center;
 }          
    
    
    
 .create_contain{
        
-    padding: 20px;
-     margin-left: 250px;      
+   padding: 20px;
+   margin-left: 250px;
+       
 }
+
 
 .box{
    display: flex;
-   flex-wrap: nowrap;
-   height: 100px;
-   width: 90%;
-   text-align: center;
-   margin-top: 20px;
+   justify-content: center;
+   margin-top :20px;
 }
 
-.register_button{
-   margin-right: 20px;
-   width: 600px;
+.box1{
+   margin-right:20px;
+}
+
+.register_button {
+   width: 450px;
    height: 50px;
-   background-color: black;
-   color: white;
-   cursor: pointer;
-   border-radius: 10px; 
-   }
+
+}
 
 .table_nm{
+   
+   
    margin: 5px;
    width: 100px;
-   text-align: left;
+
 }
 
+
 .input_in:focus{
+
    background-color: white;
    border: 0.5px solid black;
 }
 
 
 .input_in{
-	
-   margin-right: 20px;
    padding-left: 20px;
-   width: 600px;
+   width: 450px;
    height: 40px;
    font-size: 20px;
    border-radius: 8px;
@@ -104,25 +106,45 @@ hr{
 }
 
 .input_in:hover {
+   
    border: 3px solid rgb(177, 208, 250);
+
 }
 
+
 .register_button{
-   background-color: black;
-   color: white;
-   cursor: pointer;
-   border-radius: 10px;
-   }
    
+   margin-top: 50px;
+   background-color: white;
+   width: 100px;
+   font-size: 20px;
+   color: black;
+   border : 1px solid black;
+   border-radius: 10px;
+   
+}
+
+.register_button:hover{
+
+	background-color: black;
+	color: white;
+	cursor: pointer;
+	
+}
+   
+
+
 #write_id {
+
    background-color: rgb(197, 198, 216);
-   cursor: not-allowed;
+   cursor: cursor;
+
 }   
 
 
 #write_dt {
+
    background-color: rgb(197, 198, 216);
-   cursor: not-allowed;
+   cursor: cursor;
 
 }
-

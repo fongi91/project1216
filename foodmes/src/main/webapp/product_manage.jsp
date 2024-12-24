@@ -77,37 +77,7 @@
         
         text-align: right;
         }
-        
-         .button {
-            margin: 20px;
-        }
-
-        .button-container {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-        }
-
-        .pagination {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .pagination a {
-            margin: 0 5px;
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            text-decoration: none;
-            color: #000;
-        }
-
-        .pagination a.active {
-            background-color: #575757; 
-            color: white;
-   
-	
-    
-    </style> 
+	</style>
 </head>
 <body>
 
@@ -122,12 +92,16 @@
     </div>
 
     <div class="content">
+    	<div>
         	<h1>제품기준관리</h1>
-        	 <div class="button-container">
-            <button id="user_add_button">제품추가</button>
+        	<div class="button">
+            	<button id="user_add_button">제품 생성</button>
+        	</div>
         </div>
         
-            <script>
+        <hr>
+        
+        <script>
             document.addEventListener("DOMContentLoaded", function () {
                 const button = document.getElementById("user_add_button");
                 button.addEventListener("click", function () {
@@ -135,12 +109,8 @@
                 });
             });
         </script>
-        
-        <hr>
-        	
-
-
- <div class="right-side">
+       
+		 <div class="right-side">
             <form action="product_manage.jsp" method="GET">
                 show
                 <select name="numb" id="numb" onchange="this.form.submit()">

@@ -64,33 +64,12 @@
     <title>사조떡볶이</title>
     <link rel="stylesheet" href="./css/main_style.css">
     <style>
-        .button {
-            margin: 20px;
-        }
-
-        .button-container {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-        }
-
-        .pagination {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .pagination a {
-            margin: 0 5px;
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            text-decoration: none;
-            color: #000;
-        }
-
-        .pagination a.active {
-            background-color: #575757; 
-            color: white;
-        }
+       
+    .in_price{
+    
+    text-align: right;
+    }
+       
     </style>
 </head>
 
@@ -105,13 +84,16 @@
         </div>
     </div>
 
-    <div class="content">
-        <h1>자재기준관리</h1>
 
-        <!-- 자재생성 버튼을 <hr> 위쪽으로 이동 -->
-        <div class="button-container">
-            <button id="user_add_button">자재생성</button>
+    <div class="content">
+        <div>
+        	<h1>자재기준관리</h1>
+        	<div class="button">
+            	<button id="user_add_button">자재 생성</button>
+        	</div>
         </div>
+        
+        <hr>
 
         <script>
             document.addEventListener("DOMContentLoaded", function () {
@@ -122,9 +104,7 @@
             });
         </script>
 
-        <hr>
-
-        <div class="right-side">
+    	<div class="right-side">
             <form action="material_manage.jsp" method="GET">
                 show
                 <select name="numb" id="numb" onchange="this.form.submit()">
@@ -172,7 +152,7 @@
                 <td><%= rs.getString("WEIGHT_CALL") %></td>
                 <td><%= rs.getString("STAND_BIGO") %></td>
                 <td><%= rs.getString("CUST_CD") %></td>
-                <td><%= rs.getString("IN_PRICE") %></td>
+                <td class="in_price"><%= rs.getString("IN_PRICE") %></td>
                 <td><%= rs.getString("BIGO") %></td>
     		<td><%= rs.getString("WRITE_ID") == null ? "" : rs.getString("WRITE_ID") %></td>
     		<td><%= rs.getString("WRITE_DT") == null ? "" : rs.getString("WRITE_DT") %></td>

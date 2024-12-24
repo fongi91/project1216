@@ -19,23 +19,9 @@
 
 <title>사조떡볶이</title>
 <link rel="stylesheet" href="./css/crud_style.css">  
-<style>
-#write_id {
-
-   background-color: rgb(197, 198, 216);
-   cursor: not-allowed;
-}   
-
-#write_dt {
-   background-color: rgb(197, 198, 216);
-   cursor: not-allowed;
-}
-
-       
-</style> 
 </head>
 <body>
-<form id ="form" method="POST">
+<form id ="search-form" action="./material_insert.jsp" method="POST">
     <div class="sidebar">
         <h3><a href="./main.jsp">사조떡볶이 제조시스템</a></h3>
         <div class = "sidebar1">
@@ -49,108 +35,87 @@
     <div class="content">
        <div>
            <h1>자재기준관리</h1>      
-        </div>
-        <hr>
-        
-        </div>
+       </div>
+       <hr>
+    </div>
       
 
 
-   <div class="create_contain">
-   
-       <div class="essential_in">
-       	<h2>필수정보</h2>
-       	<hr class="hr">
-       	<div class="box">
-       		<div class="box1">
-       			<p class="table_nm">자재코드</p>     
-       			<input class="input_in" id="MAT_CD" name="MAT_CD">
+   	<div class="create_contain">
+  		<div class="essential_in">
+       		<h2>필수정보</h2>
+       		<hr class="hr">
+       		<div class="box">
+       			<div class="box1">
+       				<p class="table_nm">자재코드</p>     
+       				<input class="input_in" id="MAT_CD" name="MAT_CD">
+       			</div>
+       			<div class="box1">
+       				<p class="table_nm">자재명</p>
+       				<input class="input_in" id="MAT_NM" name="MAT_NM">
+       			</div>
        		</div>
-       	<div class="box1">
-       		<p class="table_nm">자재명</p>
-       		<input class="input_in" id="MAT_NM" name="MAT_NM">
-       	</div>
-       </div>
-      </div>
+      	</div>
+       
+       
        
        <div class="detail_in">
-       <h2>상세정보</h2>
-       <hr class="hr">
-       <div class="box">
-       <div class="box1">
-       <p class="table_nm">규격</p>
-       <input class="input_in" id="STAND_CALL" name="STAND_CALL">
-       </div>
-       <div class="box1">
-        <p class="table_nm">규격정보</p>
-       <input class="input_in" id="STAND_BIGO" name="STAND_BIGO">
-       </div>
-       </div>
-       <br>
-       <div class="box">
-       <div class="box1">
-       <p class="table_nm">중량</p>
-       <input class="input_in" id="WEIGHT_CALL" name="WEIGHT_CALL">
-       </div>
-       <div class="box1">
-       <p class="table_nm">자재처</p>
-       <input class="input_in" id="CUST_CD" name="CUST_CD">
-       </div>
-       </div>
-       <br>
-       <div class="box">
-       <div class="box1">
-       <p class="table_nm">입고단가</p>
-       <input class="input_in" id="IN_PRICE" name="IN_PRICE">
-       </div>
-       <div class="box1">
-       <p class="table_nm">비고</p>
-       <input class="input_in" id="BIGO" name="BIGO">
-       </div>
-       </div>
-       <br>
-       <div class="box">
-       <div class="box1">
-       <p class="table_nm">등록자</p>
-       <input class="input_in" id="WRITE_ID" name="WRITE_ID" disabled>
-       
-       
-      <p class="table_nm">등록일시</p>
-       <input class="input_in" id="WRITE_DT" name="WRITE_DT" disabled>      
-       </div>
-       </div>
-       <br>
-       <div class="box">
-       		<div class="box1">
-      			 <button class="register_button">추가</button>
-      		</div>
-       		<div class="box1">
-      			 <button class="register_button">취소</button>
+       		<h2>상세정보</h2>
+       		<hr class="hr">
+       		<div class="box">
+       			<div class="box1">
+       				<p class="table_nm">규격</p>
+       				<input class="input_in" id="STAND_CALL" name="STAND_CALL">
+       			</div>
+       			<div class="box1">
+        			<p class="table_nm">규격정보</p>
+       				<input class="input_in" id="STAND_BIGO" name="STAND_BIGO">
+       			</div>
        		</div>
-       </div>
-       </div>
+      
+       		<div class="box">
+       			<div class="box1">
+       				<p class="table_nm">중량</p>
+       				<input class="input_in" id="WEIGHT_CALL" name="WEIGHT_CALL">
+       			</div>
+       			<div class="box1">
+       				<p class="table_nm">자재처</p>
+       				<input class="input_in" id="CUST_CD" name="CUST_CD">
+       			</div>
+       		</div>
        
-        <script>
-         document.addEventListener("DOMContentLoaded", function(event) {   // 웹 페이지가 로딩되면 실행
-         const insertButton = document.getElementById("product_insert_button");  // 버튼 요소 가져오기
-         const cancelButton = document.getElementById("product_cancel_button");  // 버튼 요소 가져오기
-            
-         const insertForm = document.getElementById('form');
-         insertButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
-           	insertForm.action = "./product_insert.jsp";  
-         	});   
-         
-        
-         const cancelForm = document.getElementById('form');
-         cancelButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
-           	alert("입력이 취소되었습니다.");
-         	cancelForm.action = "./product_manage.jsp";  
-         	});       
-        });    
-        </script>
+       		<div class="box">
+       			<div class="box1">
+       				<p class="table_nm">입고단가</p>
+       				<input class="input_in" id="IN_PRICE" name="IN_PRICE">
+       			</div>
+       			<div class="box1">
+       				<p class="table_nm">비고</p>
+       				<input class="input_in" id="BIGO" name="BIGO">
+       			</div>
+       		</div>
        
+       		<div class="box">
+       			<div class="box1">
+       				<p class="table_nm">등록자</p>
+       				<input class="input_in" id="write_id" name="write_id" disabled>
+       			</div>
+       			<div class="box1">
+      				<p class="table_nm">등록일시</p>
+       				<input class="input_in" id="write_dt" name="write_dt" disabled>      
+       			</div>
+       		</div>
        
-       
-       </form>
+       		<div class="box">
+       			<div class="box1">
+       				<button class="register_button">저장</button>
+       			</div>
+       			<div class="box1">
+       				<button class="register_button">취소</button>
+       			</div>
+       		</div>
+       	</div>
+    </div>
+</form>
 </body>
 </html>

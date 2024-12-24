@@ -64,7 +64,7 @@ hr{
 .box{
    display: flex;
    height: 100px;
-   justify-content: space-between;
+   justify-content: center;
    text-align: center;
    margin-top: 20px;
 }

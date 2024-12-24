@@ -76,154 +76,6 @@
 
 <title>사조떡볶이</title>
 <link rel="stylesheet" href="./css/crud_style.css">
-<style>
-
-
-
-*{
-   box-sizing: border-box;
-
-}
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-.sidebar {
-    width: 200px;
-    height: 100vh; /* Full height */
-   
-    background-color: #575757;
-    color: white;
-    position: fixed; /* Stay fixed on the left */
-    top: 0;
-    left: 0;
-    padding-top: 20px;
-}
-
-.sidebar a{
-   display: block;
-   text-decoration: none;
-   color: white;    
-}
-
-.sidebar .sidebar1 a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    transition: background-color 0.3s;
-}
-
-.sidebar .sidebar1 a:hover {
-    background-color: #d1740a;
-    
-}
-
-.content {
-    margin-left: 250px; /* Same as the sidebar width */
-    padding: 20px;
-}
-
-hr{
-   width: 100%;
-}
-
-
-.content div {
-   display: flex;
-   justify-content: space-between;
-    align-items: center;
-}          
-   
-   
-   
-.create_contain{
-       
-    padding: 20px;
-     margin-left: 250px;
-      
-}
-
-
-.box{
-   display: flex;
-   justify-content: center;
-   margin-top :20px;
-}
-
-.box1{
-   margin-right:20px;
-}
-
-.register_button {
-   width: 450px;
-   height: 50px;
-
-}
-
-.table_nm{
-   
-   
-   margin: 5px;
-   width: 100px;
-
-}
-
-
-.input_in:focus{
-
-   background-color: white;
-   border: 0.5px solid black;
-}
-
-
-.input_in{
-   padding-left: 20px;
-   width: 450px;
-   height: 40px;
-   font-size: 20px;
-   border-radius: 8px;
-   background-color: rgb(228, 236, 247);
-   border: none;
-    
-}
-
-.input_in:hover {
-   
-   border: 3px solid rgb(177, 208, 250);
-
-}
-
-
-.register_button{
-   
-   background-color: black;
-   color: white;
-   cursor: pointer;
-   border-radius: 10px;
-   
-   }
-
-#write_id {
-
-   background-color: rgb(197, 198, 216);
-   cursor: cursor;
-
-}   
-
-
-#write_dt {
-
-   background-color: rgb(197, 198, 216);
-   cursor: cursor;
-
-}
-
-   
-
-       
-</style> 
 </head>
 <body>
 
@@ -238,77 +90,81 @@ hr{
     </div>
 
     <div class="content">
-       <div>
+    	<div>
            <h1>제품 수정/삭제</h1>      
-       </div>
+      	</div>
         <hr>      
-      </div>
+    </div>
   
   	<form id ="changeForm" method="POST">
-   <div class="create_contain">
-   
-       <div class="essential_in">
-       <h2>필수정보</h2>
-       <hr class="hr">
-       <div class="box">
-       <div class="box1">
-       <p class="table_nm">제품코드</p>     
-       <input class="input_in" id="item_cd" name="item_cd" autofocus value="<%= citemCd  %>">
-       </div>
-       <div class="box1">
-       <p class="table_nm">제품명</p>
-       <input class="input_in" id="item_nm" name="item_nm" autofocus value="<%= citemNm %>">
-       </div>
-       </div>
-       </div>
+  		<div class="create_contain">
+  			<div class="essential_in">
+       			<h2>필수정보</h2>
+       			<hr class="hr">
+       			<div class="box">
+       				<div class="box1">
+       					<p class="table_nm">제품코드</p>     
+       					<input class="input_in" id="item_cd" name="item_cd" autofocus value="<%= citemCd  %>">
+       				</div>
+       				<div class="box1">
+       					<p class="table_nm">제품명</p>
+       					<input class="input_in" id="item_nm" name="item_nm" autofocus value="<%= citemNm %>">
+       				</div>
+       			</div>
+       		</div>
+       
+       
+       
        
        <div class="detail_in">
-       <h2>상세정보</h2>
-       <hr class="hr">
-       <div class="box">
-       <div class="box1">
-       <p class="table_nm">규격</p>
-       <input class="input_in" id="item_stand" name="item_stand" autofocus value="<%= citemStand %>">
-       </div>
-       <div class="box1">
-        <p class="table_nm">단가</p>
-       <input class="input_in" id="item_price" name="item_price" autofocus value="<%= citemPrice %>">
-       </div>
-       </div>
-       <br>
-       <div class="box">
-       <div class="box1">
-       <p class="table_nm">외주단가</p>
-       <input class="input_in" id="cust_price" name="cust_price" autofocus value="<%= ccustPrice %>">
-       </div>
-       <div class="box1">
-       <p class="table_nm">비고</p>
-       <input class="input_in" id="bigo" name="bigo" autofocus value="<%= cbigo %>">
-       </div>
-       </div>
-       <br>
-       <div class="box">
-       <div class="box1">
-       <p class="table_nm">등록자</p>
-       <input class="input_in" id="write_id" name="write_id" autofocus value="<%= cWriteid %>">  
-       </div>
-       <div class="box1">
-       <p class="table_nm">등록일시</p>
-       <input class="input_in" id="write_dt" name="write_dt" autofocus value="<%= cWritedt %>">      
-       </div>
-       </div>
-       <br>
-       <div class="box">
-       <div class="box1">
-       <button class="crud_button" id="product_update_button" >수정</button>
-       </div>
-       <div class="box1">
-       <button class="crud_button" id="product_delete_button" >삭제</button>
-       </div>
+       		<h2>상세정보</h2>
+       		<hr class="hr">
+       			<div class="box">
+       				<div class="box1">
+       					<p class="table_nm">규격</p>
+       					<input class="input_in" id="item_stand" name="item_stand" autofocus value="<%= citemStand %>">
+       				</div>
+       				<div class="box1">
+        				<p class="table_nm">단가</p>
+       					<input class="input_in" id="item_price" name="item_price" autofocus value="<%= citemPrice %>">
+       				</div>
+      		 	</div>
        
-       </div>
-       </div>
-       </div>
+       			<div class="box">
+       				<div class="box1">
+       					<p class="table_nm">외주단가</p>
+       					<input class="input_in" id="cust_price" name="cust_price" autofocus value="<%= ccustPrice %>">
+       				</div>
+      				 <div class="box1">
+       					<p class="table_nm">비고</p>
+       					<input class="input_in" id="bigo" name="bigo" autofocus value="<%= cbigo %>">
+       				</div>
+       			</div>
+       
+       			<div class="box">
+       				<div class="box1">
+       					<p class="table_nm">등록자</p>
+       					<input class="input_in" id="write_id" name="write_id" autofocus value="<%= cWriteid %>" disabled>  
+       				</div>
+       				<div class="box1">
+       					<p class="table_nm">등록일시</p>
+       					<input class="input_in" id="write_dt" name="write_dt" autofocus value="<%= cWritedt %>" disabled>      
+       				</div>
+       			</div>
+       
+      			<div class="box">
+       				<div class="box1">
+       					<button class="register_button" id="product_update_button" >수정</button>
+       				</div>
+      				<div class="box1">
+      					<button class="register_button" id="product_delete_button" >삭제</button>
+      				</div>
+      				<div class="box1">
+      					<button class="register_button" id="product_cancle_button" >취소</button>
+      				</div>
+      			</div>
+       		</div>
+     	</div>
     
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {   // 웹 페이지가 로딩되면 실행
@@ -328,8 +184,6 @@ hr{
             	});       
         });       
    </script>
-    
-    
-       </form>
+</form>
 </body>
 </html>

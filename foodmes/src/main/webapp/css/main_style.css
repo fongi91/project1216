@@ -10,7 +10,6 @@ body {
 .sidebar {
     width: 200px;
     height: 100vh; /* Full height */
-   
     background-color: #575757;
     color: white;
     position: fixed; /* Stay fixed on the left */
@@ -41,7 +40,28 @@ body {
 .content {
     margin-left: 250px; /* Same as the sidebar width */
     padding: 20px;
+    justify-content: space-between;
 }
+
+
+#user_add_button{
+	
+	background-color: white;
+	margin-bottom: -50px;
+	border-radius: 5px;
+	width: 100px;
+	height: 30px;
+	font-weight: bold;
+	border: 1px solid black;
+}  
+
+
+#user_add_button:hover{
+	border: 3px solid rgb(177, 208, 250);
+	cursor: pointer;
+}
+
+
 
 hr{
 	width: 100%;
@@ -53,11 +73,7 @@ hr{
 	justify-content: space-between;
     align-items: center;
 }  	  	
-	
-.button{
-	height: 20px;
-	margin-bottom: -50px;
-}  
+
 	
 .right-side{
   	display: flex;
@@ -83,7 +99,7 @@ th {
 
 td {
 	border-bottom: solid lightgrey;
-	text-align: left;
+	text-align: center;
 	padding: 5px;    
 }
           
@@ -91,9 +107,18 @@ td {
 	display: flex;
 	justify-content: space-between;
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
 				
 .search{	
-		display: flex;
+	display: flex;
 } 
 	
 .searchbox{
@@ -102,18 +127,21 @@ td {
 	padding-left: 10px;
 	text-align: left;
 	border-radius: 5px;
+	border: 1px solid black;
 	width: 180px;
-	height: 30px;
-	cursor: pointer;	 		
+	height: 30px;		
 }
 		
 		
 .searchbox:hover{
-	border: 5px solid #a4d0f3;
+	border: 3px solid rgb(177, 208, 250);
+	cursor: pointer;
 }
+
 		
 .search-button{
 	border-radius: 5px;
+	border: 1px solid black;
 	width: 50px;
 	cursor: pointer;	
 	height: 30px;
@@ -123,14 +151,41 @@ td {
 	background-position: center;
 }
 
-.create-button{
-	border-radius: 5px;
-	width: 50px;
-	height: 30px;
-	cursor: pointer;	
-	background-color: black;
-	color: white;
+
+.search-button:hover{
+	border: 3px solid rgb(177, 208, 250);	
 }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+ .pagination {
+    margin-top: 50px;
+    padding: 20px;
+  	margin-left: 250px;
+  	text-align: center;
+}
+
+ .pagination a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #000;
+}
+
+.pagination a.active {
+    background-color: #575757; 
+    color: white;
+}
