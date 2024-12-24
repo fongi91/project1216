@@ -42,7 +42,7 @@
  	
 	
  	   
-	<form id ="search-form" action="./user_insert.jsp" method="POST">
+	<form id ="form" method="POST">
 		<div class="create_contain">
 			<div class="essential_in">
 			  	<h2>필수정보(ID / Password)</h2>
@@ -102,10 +102,44 @@
 					</div>	 
 				</div>
 			</div>
-		<button class="register_button">등록</button>
-    </div>
+       <div class="box">
+       		<div class="box1">
+       			<button id = "product_insert_button" class="register_button">추가</button>
+       		</div>
+      		<div class="box1">
+       			<button id = "product_cancel_button"class="register_button">취소</button>
+       		</div>
+       </div>
+       </div>
+       
+       <script>
+         document.addEventListener("DOMContentLoaded", function(event) {   // 웹 페이지가 로딩되면 실행
+         const insertButton = document.getElementById("product_insert_button");  // 버튼 요소 가져오기
+         const cancelButton = document.getElementById("product_cancel_button");  // 버튼 요소 가져오기
+            
+         const insertForm = document.getElementById('form');
+         insertButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
+           	insertForm.action = "./product_insert.jsp";  
+         	});   
+         
+        
+         const cancelForm = document.getElementById('form');
+         cancelButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
+           	alert("입력이 취소되었습니다.");
+         	cancelForm.action = "./product_manage.jsp";  
+         	});       
+        });    
+        </script>
+       
+       </form>
+       
 
-</form>
-
+       
+       
+       
+       
+       
+       
+       
 </body>
 </html>
