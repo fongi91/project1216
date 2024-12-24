@@ -30,8 +30,8 @@
 	String citemPrice = null;
 	String ccustPrice = null;
 	String cbigo = null;
-	String cWriteId = null;
-	String cWriteDt = null;
+	String cWriteid = null;
+	String cWritedt = null;
 	 
 	
 	Connection conn = DBManager.getDBConnection();
@@ -47,8 +47,8 @@
 	try{
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, itemCd);
-		
 		ResultSet rs = pstmt.executeQuery();
+		
 		if(rs.next()){
 		citemCd = rs.getString("ITEM_CD");
 		citemNm = rs.getString("ITEM_NM");
@@ -56,8 +56,8 @@
 		citemPrice = rs.getString("ITEM_PRICE");
 		ccustPrice = rs.getString("CUST_PRICE");
 		cbigo = rs.getString("BIGO");
-		cWriteId = rs.getString("WRITE_ID");
-		cWriteDt = rs.getString("WRITE_DT");
+		cWriteid = rs.getString("WRITE_ID");
+		cWritedt = rs.getString("WRITE_DT");
 		
 		}
 		rows = pstmt.executeUpdate();
@@ -75,6 +75,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>사조떡볶이</title>
+<link rel="stylesheet" href="./css/crud_style.css">
 <style>
 
 
@@ -141,7 +142,7 @@ hr{
        
     padding: 20px;
      margin-left: 250px;
-       
+      
 }
 
 
@@ -185,6 +186,7 @@ hr{
    border-radius: 8px;
    background-color: rgb(228, 236, 247);
    border: none;
+    
 }
 
 .input_in:hover {
@@ -242,7 +244,7 @@ hr{
         <hr>      
       </div>
   
-  	<form id ="form1" action="./product_update.jsp" method="POST">
+  	<form id ="changeForm" method="POST">
    <div class="create_contain">
    
        <div class="essential_in">
@@ -288,25 +290,45 @@ hr{
        <div class="box">
        <div class="box1">
        <p class="table_nm">등록자</p>
-       <input class="input_in" id="write_id" name="write_id" autofocus value="<%= cWriteId %>">  
+       <input class="input_in" id="write_id" name="write_id" autofocus value="<%= cWriteid %>">  
        </div>
        <div class="box1">
        <p class="table_nm">등록일시</p>
-       <input class="input_in" id="write_dt" name="write_dt" autofocus value="<%= cWriteDt %>">      
+       <input class="input_in" id="write_dt" name="write_dt" autofocus value="<%= cWritedt %>">      
        </div>
        </div>
        <br>
        <div class="box">
        <div class="box1">
-       <button class="crud_button" id="update_button" >수정</button>
+       <button class="crud_button" id="product_update_button" >수정</button>
        </div>
        <div class="box1">
-       <button class="crud_button" id="delete_button" >삭제</button>
+       <button class="crud_button" id="product_delete_button" >삭제</button>
        </div>
        
        </div>
        </div>
        </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {   // 웹 페이지가 로딩되면 실행
+            const updateButton = document.getElementById("product_update_button");  // 버튼 요소 가져오기
+            const deleteButton = document.getElementById("product_delete_button");  // 버튼 요소 가져오기
+          
+            
+            const updateForm = document.getElementById('changeForm');
+            updateButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
+              	updateForm.action = "./product_update.jsp?item_cd=<%= citemCd %>";  
+            	});   
+            
+           
+            const deleteForm = document.getElementById('changeForm');
+            deleteButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
+              	deleteForm.action = "./product_delete.jsp?item_cd=<%= citemCd %>";  
+            	});       
+        });       
+   </script>
+    
     
        </form>
 </body>

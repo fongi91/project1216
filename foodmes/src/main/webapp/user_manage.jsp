@@ -108,7 +108,7 @@
     	<div>
         	<h1>사용자관리</h1>
         	<div class = button>
-        		<button id = "user_add_button">사용자생성</button>
+        		<button id = "user_add_button" >사용자생성</button>
         	</div> 	
         </div>
             

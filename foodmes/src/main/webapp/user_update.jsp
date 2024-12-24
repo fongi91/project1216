@@ -23,6 +23,7 @@
 	String cuserWriteid = request.getParameter("write_id");
 	String cuserWritedt = request.getParameter("write_dt");
 	
+	
 	Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
 	System.out.println(currentTimestamp);
 	
@@ -44,6 +45,8 @@
 		pstmt.setString(6, cuserEmail);
 		pstmt.setString(7, cuserMobile);
 		pstmt.setString(8, cuserWriteid);
+		
+		
 		pstmt.setTimestamp(9, currentTimestamp);
 		pstmt.setString(10, cloginId);
 		
