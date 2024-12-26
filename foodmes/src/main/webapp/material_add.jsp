@@ -9,6 +9,7 @@
 <%
    //한글 처리
    request.setCharacterEncoding("UTF-8");
+   String login_id = request.getParameter("login_id");
 
 %>    
 <!DOCTYPE html>
@@ -23,12 +24,12 @@
 <body>
 <form id ="search-form" action="./material_insert.jsp" method="POST">
     <div class="sidebar">
-        <h3><a href="./main.jsp">사조떡볶이 제조시스템</a></h3>
+        <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
         <div class = "sidebar1">
-           <a href="./user_manage.jsp">사용자관리</a>
-           <a href="./product_manage.jsp">제품기준관리</a>
-           <a href="./material_manage.jsp">자재기준관리</a>
-           <a href="#contact">Version</a>
+        	<a href="./user_manage.jsp?login_id=<%= login_id %>">사용자관리</a>
+        	<a href="./product_manage.jsp?login_id=<%= login_id %>">제품기준관리</a>
+        	<a href="./material_manage.jsp?login_id=<%= login_id %>">자재기준관리</a>
+        	<a href="#contact">Version</a>
         </div>
     </div>
 
@@ -116,6 +117,27 @@
        		</div>
        	</div>
     </div>
+    <script>
+     	document.addEventListener("DOMContentLoaded", function(event) {   // 웹 페이지가 로딩되면 실행
+     		const insertButton = document.getElementById("product_insert_button");  // 버튼 요소 가져오기
+     		const cancelButton = document.getElementById("product_cancel_button");  // 버튼 요소 가져오기
+        
+     		const insertForm = document.getElementById('form');
+     		insertButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
+       			insertForm.action = "./product_insert.jsp?loginId=<%= login_id %>";  
+     		});   
+     
+    
+     		const cancelForm = document.getElementById('form');
+     		cancelButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
+	   			cancelForm.action = "./product_manage.jsp?loginId=<%= login_id %>";  
+     		});       
+    	});    
+    </script>    
+    
+    
+    
+    
 </form>
 </body>
 </html>

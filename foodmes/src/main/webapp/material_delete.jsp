@@ -6,8 +6,11 @@
     // 한글 처리
     request.setCharacterEncoding("UTF-8");
 
+
+	String login_id = request.getParameter("login_id");
     // URL에서 전달된 자재 코드(Matcd) 파라미터를 가져옵니다.
     String cmatcd = request.getParameter("Matcd");
+    
 
     Connection conn = DBManager.getDBConnection();
     
@@ -40,5 +43,5 @@
     }
     
     // 삭제 후 자재 관리 페이지로 리디렉션
-    window.location.href = './material_manage.jsp';
+    window.location.href = './material_manage.jsp?login_id=<%= login_id %>';
 </script>

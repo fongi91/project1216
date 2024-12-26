@@ -9,6 +9,8 @@
 <%
     // 한글 처리
     request.setCharacterEncoding("UTF-8");
+	String login_id = request.getParameter("login_id");
+
 
     // 페이지 크기와 현재 페이지 번호 받기
     String postCountStr = request.getParameter("numb");
@@ -46,8 +48,8 @@
     		
     		String sql = " SELECT * FROM ( "+
     				" SELECT rownum AS ROWNO, ITEM_CD, ITEM_NM, ITEM_STAND, "+
-    				" to_char(item_price,'FM999,999,999') AS item_price, "+
-    				" to_char(cust_price,'FM999,999,999') AS cust_price, "+
+    				" to_char(ITEM_PRICE,'FM999,999,999') AS ITEM_PRICE, "+
+    				" to_char(CUST_PRICE,'FM999,999,999') AS CUST_PRICE, "+
     				" BIGO, WRITE_ID as WRITE_ID ,to_char(write_dt, 'YYYY/MM/DD HH24:MI:SS') AS WRITE_DT"+
     				" FROM MEITEM "+
     				"WHERE rownum <= ?)"+
@@ -80,13 +82,12 @@
 	</style>
 </head>
 <body>
-
-    <div class="sidebar">
-        <h3><a href="./main.jsp">사조떡볶이 제조시스템</a></h3>
+   <div class="sidebar">
+        <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
         <div class = "sidebar1">
-        	<a href="./user_manage.jsp">사용자관리</a>
-        	<a href="./product_manage.jsp">제품기준관리</a>
-        	<a href="./material_manage.jsp">자재기준관리</a>
+        	<a href="./user_manage.jsp?login_id=<%= login_id %>">사용자관리</a>
+        	<a href="./product_manage.jsp?login_id=<%= login_id %>">제품기준관리</a>
+        	<a href="./material_manage.jsp?login_id=<%= login_id %>">자재기준관리</a>
         	<a href="#contact">Version</a>
         </div>
     </div>
@@ -105,7 +106,7 @@
             document.addEventListener("DOMContentLoaded", function () {
                 const button = document.getElementById("user_add_button");
                 button.addEventListener("click", function () {
-                    window.location.href = "./product_add.jsp"; // 자재 추가 페이지로 이동
+                    window.location.href = "./product_add.jsp?login_id=<%= login_id %>"; // 자재 추가 페이지로 이동
                 });
             });
         </script>
@@ -156,7 +157,7 @@
     	    <td><%= rs.getString("ROWNO") %></td>
     	    
     	    
-    		<td> <a href="product_change.jsp?item_cd=<%= rs.getString("ITEM_CD") %>"> <%= rs.getString("ITEM_CD") %> </a> </td>	
+    		<td> <a href="product_change.jsp?login_id=<%= login_id %>&item_cd=<%= rs.getString("ITEM_CD") %>"> <%= rs.getString("ITEM_CD") %> </a> </td>	
     		<td><%= rs.getString("ITEM_NM") %></td>
     		<td><%= rs.getString("ITEM_STAND") %></td>    		
     		<td class="item_price"><%= rs.getString("ITEM_PRICE") %></a></td>
@@ -182,16 +183,12 @@
             for (int i = 1; i <= totalPages; i++) {
                 String activeClass = (i == currentPage) ? "active" : "";
         %>
-        <a href="?page=<%= i %>&numb=<%= postCount %>" class="<%= activeClass %>"><%= i %></a>
+        <a href="?login_id=<%= login_id %>&page=<%= i %>&numb=<%= postCount %>" class="<%= activeClass %>"><%= i %></a>
         <%
             }
         %>
     </div>
-    
-     
-     
-     
-     
+  
      
 </body>
 </html>

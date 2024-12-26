@@ -9,9 +9,8 @@
 <%
    //한글 처리
    request.setCharacterEncoding("UTF-8");
-
-	
-	String itemCd = request.getParameter("item_cd");
+   String login_id = request.getParameter("login_id");
+   String itemCd = request.getParameter("item_cd");
 	/*
 	String item_nm = request.getParameter("item_nm");
 	String item_stand = request.getParameter("item_stand");	
@@ -35,11 +34,12 @@
 	 
 	
 	Connection conn = DBManager.getDBConnection();
-	String sql = " SELECT rownum AS ROWNO, ITEM_CD, ITEM_NM, ITEM_STAND, "+
-			" to_char(item_price,'FM999,999,999') AS item_price, "+
-			 " to_char(cust_price,'FM999,999,999') AS cust_price, "+
-			" BIGO, WRITE_ID as WRITE_ID ,to_char(write_dt, 'YYYY/MM/DD HH24:MI:SS') AS WRITE_DT"+
-			" FROM MEITEM WHERE ITEM_CD = ?";
+	String sql = " SELECT rownum AS ROWNO, ITEM_CD, ITEM_NM, ITEM_STAND, "
+	+ " to_char(ITEM_PRICE,'FM999,999,999') AS ITEM_PRICE, "
+	+ " to_char(CUST_PRICE,'FM999,999,999') AS CUST_PRICE, "
+	+ " BIGO, WRITE_ID, "
+	+ " to_char(WRITE_DT, 'YYYY/MM/DD HH24:MI:SS') AS WRITE_DT "
+	+ " FROM MEITEM WHERE ITEM_CD = ?";
 	
 	int rows = 0;
 	
@@ -78,14 +78,13 @@
 <link rel="stylesheet" href="./css/crud_style.css">
 </head>
 <body>
-
     <div class="sidebar">
-        <h3><a href="./main.jsp">사조떡볶이 제조시스템</a></h3>
+        <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
         <div class = "sidebar1">
-           <a href="./user_manage.jsp">사용자관리</a>
-           <a href="./product_manage.jsp">제품기준관리</a>
-           <a href="./material_manage.jsp">자재기준관리</a>
-           <a href="#contact">Version</a>
+        	<a href="./user_manage.jsp?login_id=<%= login_id %>">사용자관리</a>
+        	<a href="./product_manage.jsp?login_id=<%= login_id %>">제품기준관리</a>
+        	<a href="./material_manage.jsp?login_id=<%= login_id %>">자재기준관리</a>
+        	<a href="#contact">Version</a>
         </div>
     </div>
 
@@ -160,7 +159,7 @@
       					<button class="register_button" id="product_delete_button" >삭제</button>
       				</div>
       				<div class="box1">
-      					<button class="register_button" id="product_cancle_button" >취소</button>
+      					<button class="register_button" id="product_cancel_button" >취소</button>
       				</div>
       			</div>
        		</div>
@@ -170,18 +169,29 @@
         document.addEventListener("DOMContentLoaded", function(event) {   // 웹 페이지가 로딩되면 실행
             const updateButton = document.getElementById("product_update_button");  // 버튼 요소 가져오기
             const deleteButton = document.getElementById("product_delete_button");  // 버튼 요소 가져오기
+            const cancelButton = document.getElementById("product_cancel_button");
           
             
             const updateForm = document.getElementById('changeForm');
             updateButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
-              	updateForm.action = "./product_update.jsp?item_cd=<%= citemCd %>";  
+              	updateForm.action = "./product_update.jsp?login_id=<%= login_id %>";   
             	});   
             
            
             const deleteForm = document.getElementById('changeForm');
             deleteButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
-              	deleteForm.action = "./product_delete.jsp?item_cd=<%= citemCd %>";  
-            	});       
+              	deleteForm.action = "./product_delete.jsp?login_id=<%= login_id %>";  
+            	});
+            
+            const cancelForm = document.getElementById('changeForm');
+            cancelButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
+              	cancelForm.action = "./product_manage.jsp?login_id=<%= login_id %>";  
+            	});
+            
+            
+            
+            
+            
         });       
    </script>
 </form>

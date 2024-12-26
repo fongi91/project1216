@@ -64,6 +64,7 @@ hr{
 
 
 .box{
+   /*margin-left: 250px;*/
    display: flex;
    justify-content: center;
    margin-top :20px;
@@ -80,8 +81,6 @@ hr{
 }
 
 .table_nm{
-   
-   
    margin: 5px;
    width: 100px;
 
@@ -148,3 +147,10 @@ hr{
    cursor: cursor;
 
 }
+
+ @media all and (max-width: 800px) {
+ 
+    .input_in{
+      width:100%;
+	}
+ }

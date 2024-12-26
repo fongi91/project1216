@@ -5,6 +5,7 @@
 <%
     // 한글 처리
     request.setCharacterEncoding("UTF-8");
+	String login_id = request.getParameter("login_id");
 
     // 페이지 크기와 현재 페이지 번호 받기
     String postCountStr = request.getParameter("numb");
@@ -100,12 +101,12 @@
 
 <body>
     <div class="sidebar">
-        <h3><a href="./main.jsp">사조떡볶이 제조시스템</a></h3>
-        <div class="sidebar1">
-            <a href="./user_manage.jsp">사용자관리</a>
-            <a href="./product_manage.jsp">제품기준관리</a>
-            <a href="./material_manage.jsp">자재기준관리</a> 
-            <a href="#contact">Version</a>
+        <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
+        <div class = "sidebar1">
+        	<a href="./user_manage.jsp?login_id=<%= login_id %>">사용자관리</a>
+        	<a href="./product_manage.jsp?login_id=<%= login_id %>">제품기준관리</a>
+        	<a href="./material_manage.jsp?login_id=<%= login_id %>">자재기준관리</a>
+        	<a href="#contact">Version</a>
         </div>
     </div>
 
@@ -121,7 +122,7 @@
             document.addEventListener("DOMContentLoaded", function () {
                 const button = document.getElementById("user_add_button");
                 button.addEventListener("click", function () {
-                    window.location.href = "./material_add.jsp"; // 자재 추가 페이지로 이동
+                    window.location.href = "./user_add?login_id=<%= login_id %>.jsp"; // 자재 추가 페이지로 이동
                 });
             });
         </script>
@@ -189,7 +190,7 @@
             for (int i = 1; i <= totalPages; i++) {
                 String activeClass = (i == currentPage) ? "active" : "";
         %>
-        <a href="?page=<%= i %>&numb=<%= postCount %>&search1=<%= search %>" class="<%= activeClass %>"><%= i %></a>
+        <a href="?login_id=<%= login_id %>page=<%= i %>&numb=<%= postCount %>&search1=<%= search %>" class="<%= activeClass %>"><%= i %></a>
         <%
             }
         %>

@@ -10,6 +10,7 @@
 <%
    //한글 처리
 	request.setCharacterEncoding("UTF-8");
+	String login_id = request.getParameter("login_id");
 	
 	String userId = request.getParameter("id");
 	String userPassword = request.getParameter("passwd");
@@ -57,5 +58,5 @@
 	} else{
 		alert("사용자 입력에 실패하였습니다.");
 	}
-	window.location.href = './user_manage.jsp';
+	window.location.href = './user_manage.jsp?login_id=<%= login_id %>';
 </script>

@@ -10,6 +10,7 @@
 <%
    //한글 처리
 	request.setCharacterEncoding("UTF-8");
+    String login_id = request.getParameter("login_id");
 	
 	String matcd = request.getParameter("MAT_CD");
 	String matnm = request.getParameter("MAT_NM");
@@ -52,11 +53,11 @@
 		e.printStackTrace();	
 	}
 %>
-<script>
-	if(<%= rows %> == 1){
-		alert("자재 추가가 완료되었습니다.");
-	} else{
-		alert("자재 추가에 실패하였습니다.");	
-	}
-	window.location.href = './user_manage.jsp';
-</script>
+    <script>
+		if(<%= rows %> == 1){
+			alert("자재추가에 성공하였습니다.");
+		} else{
+			alert("필수항목미입력으로 자재추가에 실패하였습니다.");
+		}
+		window.location.href = './material_manage.jsp?login_id=<%= login_id %>';
+	</script>

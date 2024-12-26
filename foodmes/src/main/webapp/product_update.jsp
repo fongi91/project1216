@@ -11,16 +11,19 @@
 <%
    //한글 처리
 	request.setCharacterEncoding("UTF-8");
-	
-	String citemCd = request.getParameter("item_cd");
+    String login_id = request.getParameter("login_id");
+    
+    
 	String citemNm = request.getParameter("item_nm");
 	String citemStand = request.getParameter("item_stand");
-	Integer citemPriceNum = Integer.parseInt(request.getParameter("item_price"));
-	Integer ccustPriceNum = Integer.parseInt(request.getParameter("cust_price"));
+	String citemPrice = request.getParameter("item_price");
+	String ccustPrice = request.getParameter("cust_price");
 	
 	String cbigo = request.getParameter("bigo");
 	String cWriteid = request.getParameter("write_id");
 	String cWritedt = request.getParameter("write_dt");
+	
+	String citemCd = request.getParameter("item_cd");
 	
 	Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
 	System.out.println(currentTimestamp);
@@ -37,8 +40,8 @@
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, citemNm);
 		pstmt.setString(2, citemStand);
-		pstmt.setInt(3, citemPriceNum);
-		pstmt.setInt(4, ccustPriceNum);
+		pstmt.setString(3, citemPrice);
+		pstmt.setString(4, ccustPrice);
 		pstmt.setString(5, cbigo);
 		pstmt.setString(6, cWriteid);
 		pstmt.setTimestamp(7, currentTimestamp);
@@ -59,6 +62,6 @@
 	} else{
 		alert("수정 실패하였습니다.");
 	}
-	window.location.href = './product_manage.jsp';
+	window.location.href = './product_manage.jsp?login_id=<%= login_id %>';
 </script>
 

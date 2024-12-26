@@ -13,6 +13,8 @@
 	request.setCharacterEncoding("UTF-8");
 	
 	String cloginId = request.getParameter("loginid");
+	
+	
 	String cuserPassword = request.getParameter("passwd");
 	String cuserName = request.getParameter("name");
 	String cuserSabun = request.getParameter("sabun");

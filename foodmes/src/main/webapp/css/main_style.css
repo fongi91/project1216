@@ -57,8 +57,7 @@ body {
 
 
 #user_add_button:hover{
-	background-color:black;
-	color:white;
+	border: 3px solid rgb(177, 208, 250);
 	cursor: pointer;
 }
 
@@ -110,14 +109,7 @@ td {
 }
 	
 	
-	
-	
-	
-	
-	
-	
-	
-				
+			
 .search{	
 	display: flex;
 } 
@@ -156,18 +148,6 @@ td {
 .search-button:hover{
 	border: 3px solid rgb(177, 208, 250);	
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

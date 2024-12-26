@@ -10,6 +10,7 @@
 <%
    //한글 처리
    request.setCharacterEncoding("UTF-8");
+   String login_id = request.getParameter("login_id");
 
     
     /* getParameter 는 jsp에서 제공하는 메서드로, http 요청에서 파라미터 값을 가져옵니다.
@@ -86,15 +87,15 @@
 <link rel="stylesheet" href="./css/crud_style.css">  
 </head>
 <body>
-
     <div class="sidebar">
-        <h3><a href="./main.jsp">사조떡볶이 제조시스템</a></h3>
+        <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
         <div class = "sidebar1">
-           <a href="./user_manage.jsp">사용자관리</a>
-           <a href="./product_manage.jsp">제품기준관리</a>
-           <a href="./material_manage.jsp">자재기준관리</a>
-           <a href="#contact">Version</a>
+        	<a href="./user_manage.jsp?login_id=<%= login_id %>">사용자관리</a>
+        	<a href="./product_manage.jsp?login_id=<%= login_id %>">제품기준관리</a>
+        	<a href="./material_manage.jsp?login_id=<%= login_id %>">자재기준관리</a>
+        	<a href="#contact">Version</a>
         </div>
+    </div>
     </div>
 
     <div class="content">
@@ -113,11 +114,11 @@
 			  	<div class = "box">
 			  		<div class="box1">
 			  			<p class="table_nm">ID</p>
-			  			<input class = input_in id="loginid" name="loginid" autofocus value="<%= cuserId %>"/>
+			  			<input class = input_in id="inputField" name="loginid" autofocus value="<%= cuserId %>"  />
 			  		</div>
 			  		<div class="box1">
 			  			<p class="table_nm">Password</p>
-						<input class = input_in id="passwd" name="passwd" autofocus value="<%= cuserPassword %>"/>
+						<input class = input_in id="inputField" name="passwd" autofocus value="<%= cuserPassword %>"  />
 			  		</div>	  		
 			  	</div>
 			</div>
@@ -130,41 +131,41 @@
 				<div class="box">
 					<div class="box1">
 				  		<p class="table_nm">이름</p>
-						<input class = input_in id="name" name="name" autofocus value="<%= cuserName %>"/>
+						<input class = input_in id="inputField" name="name" autofocus value="<%= cuserName %>"  />
 					</div>
 					<div class="box1">	
 				  		<p class="table_nm">사번</p>
-						<input class = input_in id="sabun" name="sabun" autofocus value="<%= cuserSabun %>"/>
+						<input class = input_in id="inputField" name="sabun" autofocus value="<%= cuserSabun %>" />
 					</div>
 				</div>
 				<div class="box">	
 				  	<div class="box1">
 				  		<p class="table_nm">부서</p>
-						<input class = input_in id="depart_nm" name="depart_nm" autofocus value="<%= cuserDepartnm %>"/>
+						<input class = input_in id="inputField" name="depart_nm" autofocus value="<%= cuserDepartnm %>" />
 					</div>	
 					<div class="box1">
 						<p class="table_nm">직급</p>
-						<input class = input_in id="jik_nm" name="jik_nm" autofocus value="<%= cuserJiknm %>"/>
+						<input class = input_in id="inputField" name="jik_nm" autofocus value="<%= cuserJiknm %>" />
 					</div>
 				</div>	
 				<div class="box">
 					<div class="box1">
 						<p class="table_nm">이메일</p>
-						<input class = input_in id="email" name="email" autofocus value="<%= cuserEmail %>"/>
+						<input class = input_in id="inputField" name="email" autofocus value="<%= cuserEmail %>" />
 					</div>	
 					<div class="box1">
 						<p class="table_nm">휴대전화번호</p>
-						<input class = input_in id="mobile" name="mobile" autofocus value="<%= cuserMobile %>"/>
+						<input class = input_in id="inputField" name="mobile" autofocus value="<%= cuserMobile %>" />
 					</div>
 				</div>
 				<div class="box">	
 					<div class="box1">
 						<p class="table_nm">등록자</p>
-						<input class = input_in id="write_id" name="write_id" autofocus value="<%= cuserWriteid %>" disabled/>
+						<input class = input_in id="inputField" name="write_id" autofocus value="<%= cuserWriteid %>"  />
 					</div>
 					<div class="box1">
 						<p class="table_nm">등록날짜</p>
-						<input class = input_in id="write_dt" name="write_dt" autofocus value="<%= cuserWritedt %>" disabled/>
+						<input class = input_in id="inputField" name="write_dt" autofocus value="<%= cuserWritedt %>" />
 					</div>	 	 
 				</div>
 			
@@ -176,29 +177,43 @@
 						<button class="register_button" id="user_delete_button">삭제</button>
    					</div>
    					<div class="box1">
-      					<button class="register_button" id="user_cancle_button" >취소</button>
+      					<button class="register_button" id="user_cancel_button" >취소</button>
       				</div>
    				</div>
    			</div>
    		</div>
--
+
 		<script>
         document.addEventListener("DOMContentLoaded", function(event) {   // 웹 페이지가 로딩되면 실행
             const updateButton = document.getElementById("user_update_button");  // 버튼 요소 가져오기
             const deleteButton = document.getElementById("user_delete_button");  // 버튼 요소 가져오기
+            const cancelButton = document.getElementById("user_cancel_button");
           
             
             const updateForm = document.getElementById('changeForm');
             updateButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
-              	updateForm.action = "./user_update.jsp?login_id=<%= cuserId %>";  
+              	updateForm.action = "./user_update.jsp?login_id=<%= login_id %>";  
             	});   
             
            
             const deleteForm = document.getElementById('changeForm');
             deleteButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
-              	deleteForm.action = "./user_delete.jsp?login_id=<%= cuserId %>";  
-            	});       
-        });       
+              	deleteForm.action = "./user_delete.jsp?login_id=<%= login_id %>";  
+            	});
+            
+            const cancelForm = document.getElementById('changeForm');
+            cancelButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
+              	cancelForm.action = "./user_manage.jsp?login_id=<%= login_id %>";  
+            	});
+            
+            
+            const inputField = document.getElementById('inputField');
+            if(login_id !== "admin"){
+            	inputField.disabled ;
+            } 
+                      
+        });
+        
    </script>
   
 </form>

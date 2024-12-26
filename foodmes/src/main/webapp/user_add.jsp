@@ -9,6 +9,7 @@
 <%
    //한글 처리
    request.setCharacterEncoding("UTF-8");
+   String login_id = request.getParameter("login_id");
 
 %>    
 <!DOCTYPE html>
@@ -22,14 +23,13 @@
 </head>
 <body>
 <body>
-<form id ="search-form" action="./user_insert.jsp" method="POST">
     <div class="sidebar">
-        <h3><a href="./main.jsp">사조떡볶이 제조시스템</a></h3>
+        <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
         <div class = "sidebar1">
-           <a href="./user_manage.jsp">사용자관리</a>
-           <a href="./product_manage.jsp">제품기준관리</a>
-           <a href="./material_manage.jsp">자재기준관리</a>
-           <a href="#contact">Version</a>
+        	<a href="./user_manage.jsp?login_id=<%= login_id %>">사용자관리</a>
+        	<a href="./product_manage.jsp?login_id=<%= login_id %>">제품기준관리</a>
+        	<a href="./material_manage.jsp?login_id=<%= login_id %>">자재기준관리</a>
+        	<a href="#contact">Version</a>
         </div>
     </div>
 
@@ -41,82 +41,97 @@
  	</div>
  	
 	
-
+ 	   
+	<form id ="form" method="POST">
 		<div class="create_contain">
 			<div class="essential_in">
 			  	<h2>필수정보(ID / Password)</h2>
-			  	<hr class="hr">
+			  	<hr>
+			  	
 			  	<div class = "box">
-			  		<div class= "box1">
+			  		<div class="box1">
 			  			<p class="table_nm">ID</p>
-			  			<input class = input_in id="id" name="id" placeholder="아이디"/>
+			  			<input class = input_in id="id" name="id"/>
 			  		</div>
 			  		<div class="box1">
 			  			<p class="table_nm">Password</p>
-						<input class = input_in id="passwd" name="passwd" placeholder="비밀번호"/>
+						<input class = input_in id="passwd" name="passwd"/>
 			  		</div>	  		
 			  	</div>
 			</div>
-			
+			<br><br><br><br>
 			
 			
 			<div class="detail_in">
 				<h2>상세정보</h2>
-				<hr class="hr">
+				<hr>
 				<div class="box">
 					<div class="box1">
 				  		<p class="table_nm">이름</p>
-						<input class = input_in id="name" name="name" placeholder="이름"/>
+						<input class = input_in id="name" name="name"/>
 					</div>
 					<div class="box1">	
 				  		<p class="table_nm">사번</p>
-						<input class = input_in id="sabun" name="sabun" placeholder="사번"/>
+						<input class = input_in id="sabun" name="sabun"/>
 					</div>
 				</div>
-				
 				<div class="box">	
 				  	<div class="box1">
 				  		<p class="table_nm">부서</p>
-						<input class = input_in id="depart_nm" name="depart_nm" placeholder="부서"/>
+						<input class = input_in id="depart_nm" name="depart_nm"/>
 					</div>	
 					<div class="box1">
 						<p class="table_nm">직급</p>
-						<input class = input_in id="jik_nm" name="jik_nm" placeholder="직급"/>
+						<input class = input_in id="jik_nm" name="jik_nm"/>
 					</div>
-				</div>
-				
+				</div>	
 				<div class="box">
 					<div class="box1">
 						<p class="table_nm">이메일</p>
-						<input class = input_in id="email" name="email" placeholder="이메일"/>
+						<input class = input_in id="email" name="email"/>
 					</div>	
 					<div class="box1">
 						<p class="table_nm">휴대전화번호</p>
-						<input class = input_in id="mobile" name="mobile" placeholder="휴대전화번호"/>
+						<input class = input_in id="mobile" name="mobile"/>
 					</div>
 				</div>
-				
 				<div class="box">	
 					<div class="box1">
 						<p class="table_nm">등록자</p>
-						<input class = input_in id="write_id" name="write_id" placeholder="등록자" disabled/>
-					</div>	
-					<div class="box1">
-       					<p class="table_nm">등록일시</p>
-       					<input class="input_in" id="write_dt" name="write_dt" disabled>      
-       				</div> 
+						<input class = input_in id="write_id" name="write_id"/>
+					</div>	 
 				</div>
-				
-      			<div class="box">
-     				<div class="box1">
-     				 	<button class="register_button">저장</button>
-    				</div>
-   			 		<div class="box1">	
-       					<button class="register_button">취소</button>
-       				</div>
-       			</div>
+			</div>
+       <div class="box">
+       		<div class="box1">
+       			<button id = "product_insert_button" class="register_button">추가</button>
        		</div>
-       	</div>
-  </form>
+      		<div class="box1">
+       			<button id = "product_cancel_button"class="register_button">취소</button>
+       		</div>
+       </div>
+       </div>
+       
+       <script>
+         document.addEventListener("DOMContentLoaded", function(event) {   // 웹 페이지가 로딩되면 실행
+         const insertButton = document.getElementById("product_insert_button");  // 버튼 요소 가져오기
+         const cancelButton = document.getElementById("product_cancel_button");  // 버튼 요소 가져오기
+            
+         const insertForm = document.getElementById('form');
+         insertButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
+           	insertForm.action = "./user_insert.jsp?login_id=<%= login_id %>";  
+         	});   
+         
+        
+         const cancelForm = document.getElementById('form');
+         cancelButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
+         	cancelForm.action = "./user_manage.jsp?login_id=<%= login_id %>";  
+         	});       
+        });    
+        </script>
+       
+       </form>
+          
+       
 </body>
 </html>

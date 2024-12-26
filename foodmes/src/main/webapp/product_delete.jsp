@@ -10,6 +10,7 @@
 <%
    //한글 처리
 	request.setCharacterEncoding("UTF-8");
+    String login_id = request.getParameter("login_id");
 	
 	// 파라미터 값 확인: <input class = input_in id="id" name="id" autofocus value .... 의 name에서 가져왔습니다.)
 	String itemCd = request.getParameter("item_cd");
@@ -35,6 +36,6 @@
 	} else{
 		alert("삭제 실패하였습니다.");
 	}
-	window.location.href = './product_manage.jsp';
+	window.location.href = './product_manage.jsp?login_id=<%= login_id %>';
 </script>
 

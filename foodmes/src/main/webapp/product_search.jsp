@@ -9,6 +9,8 @@
 <%
    //한글 처리
    request.setCharacterEncoding("UTF-8");
+   String login_id = request.getParameter("login_id");
+
 
 %>    
 <!DOCTYPE html>
@@ -42,13 +44,12 @@
     </style> 
 </head>
 <body>
-
     <div class="sidebar">
-        <h3><a href="./main.jsp">사조떡볶이 제조시스템</a></h3>
+        <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
         <div class = "sidebar1">
-        	<a href="./user_manage.jsp">사용자관리</a>
-        	<a href="./product_manage.jsp">제품기준관리</a>
-        	<a href="./material_manage.jsp">자재기준관리</a>
+        	<a href="./user_manage.jsp?login_id=<%= login_id %>">사용자관리</a>
+        	<a href="./product_manage.jsp?login_id=<%= login_id %>">제품기준관리</a>
+        	<a href="./material_manage.jsp?login_id=<%= login_id %>">자재기준관리</a>
         	<a href="#contact">Version</a>
         </div>
     </div>
@@ -71,7 +72,7 @@
 	      
 	     <span class="search">
 	     
-          <form id="search-form" action="./product_search.jsp" method="POST">
+          <form id="search-form" action="./product_search.jsp?login_id=<%= login_id %>" method="POST">
           <span class="search">
      	     <input class="searchbox" type="search" id="search" name="search1" placeholder="제품명을 입력하세요">
      	     <button class="search-button" type="submit"></button>
@@ -127,7 +128,7 @@
     	%>
     	<tr>
     	    <td><%= rs.getString("ROWNO") %></td>
-    		<td><a href=""><%= rs.getString("ITEM_CD") %></a></td>
+    	    <td> <a href="product_change.jsp?login_id=<%= login_id %>&item_cd=<%= rs.getString("ITEM_CD") %>"> <%= rs.getString("ITEM_CD") %> </a> </td>
     		<td><%= rs.getString("ITEM_NM") %></td>
     		<td><%= rs.getString("ITEM_STAND") %></td>    		
     		<td class="item_price"><%= rs.getString("ITEM_PRICE") %></a></td>

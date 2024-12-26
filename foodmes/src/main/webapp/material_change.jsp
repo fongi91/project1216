@@ -10,6 +10,8 @@
 <%
    //한글 처리
    request.setCharacterEncoding("UTF-8");
+	String login_id = request.getParameter("login_id");
+	String matcd = request.getParameter("MATCD");
 
     
     /* getParameter 는 jsp에서 제공하는 메서드로, http 요청에서 파라미터 값을 가져옵니다.
@@ -25,7 +27,7 @@
      
        3. request.getParameter("login_id")의 "login_id"는      
        mamage.jsp파일의 a href="user_change.jsp?login_id= " 에서  ?다음에 나오는 log_id와 매칭됩니다.   */
-	String matcd = request.getParameter("MATCD");
+
 
 	
 	// input 태그에 초기값으로 기존 정보를 보여주기 위해 null값 변수를 만들었습니다.
@@ -87,15 +89,13 @@
 <link rel="stylesheet" href="./css/crud_style.css">  
 </head>
 <body>
-
-
     <div class="sidebar">
-        <h3><a href="./main.jsp">사조떡볶이 제조시스템</a></h3>
+        <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
         <div class = "sidebar1">
-           <a href="./user_manage.jsp">사용자관리</a>
-           <a href="./product_manage.jsp">제품기준관리</a>
-           <a href="./material_manage.jsp">자재기준관리</a>
-           <a href="#contact">Version</a>
+        	<a href="./user_manage.jsp?login_id=<%= login_id %>">사용자관리</a>
+        	<a href="./product_manage.jsp?login_id=<%= login_id %>">제품기준관리</a>
+        	<a href="./material_manage.jsp?login_id=<%= login_id %>">자재기준관리</a>
+        	<a href="#contact">Version</a>
         </div>
     </div>
 
@@ -176,7 +176,7 @@
       						<button class="register_button" id="material_delete_button" >삭제</button>
       					</div>
       					<div class="box1">
-      						<button class="register_button" id="material_cancle_button" >취소</button>
+      						<button class="register_button" id="material_cancel_button" >취소</button>
       					</div>
       				</div>
 				</div>
@@ -184,20 +184,28 @@
     
 		<script>
         document.addEventListener("DOMContentLoaded", function(event) {   // 웹 페이지가 로딩되면 실행
-            const updateButton = document.getElementById("user_update_button");  // 버튼 요소 가져오기
-            const deleteButton = document.getElementById("user_delete_button");  // 버튼 요소 가져오기
+            const updateButton = document.getElementById("material_update_button");  // 버튼 요소 가져오기
+            const deleteButton = document.getElementById("material_delete_button");  // 버튼 요소 가져오기
+            const cancelButton = document.getElementById("material_cancel_button");
           
             
             const updateForm = document.getElementById('changeForm');
             updateButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
-              	updateForm.action = "./material_update.jsp?login_id=<%= matcd %>";  
+              	updateForm.action = "./material_update.jsp?login_id=<%= login_id %>";  
             	});   
             
            
             const deleteForm = document.getElementById('changeForm');
             deleteButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
-              	deleteForm.action = "./material_delete.jsp?login_id=<%= matcd %>";  
-            	});       
+              	deleteForm.action = "./material_delete.jsp?login_id=<%= login_id %>";
+            	});    
+            
+            const cancelForm = document.getElementById('changeForm');
+            cancelButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행	
+              	cancelForm.action = "./material_manage.jsp?login_id=<%= login_id %>";  
+            	}); 
+            
+            
         });       
    </script>
   

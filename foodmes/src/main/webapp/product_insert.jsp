@@ -9,6 +9,7 @@
 
 <%
 	request.setCharacterEncoding("UTF-8");
+    String login_id = request.getParameter("login_id");
 	
 	String item_cd = request.getParameter("item_cd");
 	String item_nm = request.getParameter("item_nm");
@@ -22,18 +23,12 @@
 	String write_dt = request.getParameter("write_dt");
 	
 
-
 	Connection conn = DBManager.getDBConnection();
 	
     		String sql = " INSERT INTO MEITEM(ITEM_CD, ITEM_NM, ITEM_STAND, ITEM_PRICE, CUST_PRICE, BIGO, WRITE_ID, WRITE_DT) "
     		+ " VALUES (?, ?, ?, ?, ?, ?, ?, SYSDATE)";
-    		
-    		
-    		
-
-    		
-    		int rows = 0;
-    		
+    		    			
+    		int rows = 0;		
     		try{
     			
     			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -46,16 +41,14 @@
     			pstmt.setString(6, bigo);
     			pstmt.setString(7, write_id);
     			//pstmt.setString(8, write_dt);
-    			
-    			
+    						
     			rows = pstmt.executeUpdate();
     			
     			DBManager.dbClose(conn, pstmt, null);	
     		} catch (Exception e){
     			e.printStackTrace();
     			System.err.println("입력오류");
-    		}
-    		
+    		}		
     %>
     <script>
 	if(<%= rows %> == 1){
@@ -63,5 +56,5 @@
 	} else{
 		alert("제품 추가에 실패하였습니다.");
 	}
-	window.location.href = './product_manage.jsp';
+	window.location.href = './product_manage.jsp?login_id=<%= login_id %>';
 </script>

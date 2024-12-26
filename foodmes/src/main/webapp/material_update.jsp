@@ -11,6 +11,7 @@
 <%
    //한글 처리
 	request.setCharacterEncoding("UTF-8");
+	String login_id = request.getParameter("login_id");
 	
 	String cmatcd = request.getParameter("Matcd");
 	String cmatnm = request.getParameter("Matnm");
@@ -63,6 +64,6 @@
 	} else{
 		alert("수정 실패하였습니다.");
 	}
-	window.location.href = './material_manage.jsp';
+	window.location.href = './material_manage.jsp?login_id=<%= login_id %>';
 </script>
 
