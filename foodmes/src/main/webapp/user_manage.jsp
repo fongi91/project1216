@@ -79,13 +79,22 @@
         	<a href="#contact">Version</a>
         </div>
     </div>
+    
+    
+    
     <div class="content">
-    	<div>
-        	<h1>사용자관리</h1>
-        	<div class = button>
-        		<button id = "user_add_button" >사용자 생성</button>
-        	</div> 	
+        <div>
+            <h1>사용자관리</h1>
+            <div class="button-container">
+                <%-- 로그인한 사용자가 "admin"일 경우에만 사용자 생성 버튼을 보이게 함 --%>
+                <% if ("admin".equals(login_id)) { %>
+                    <button id="user_add_button">사용자 생성</button>
+                <% } else { %>
+                    <p>관리자만 사용자를 생성할 수 있습니다.</p>
+                <% } %>
+            </div>
         </div>
+
             
         <hr>
         
@@ -116,6 +125,10 @@
 	    </div>
 	</div>
 	   
+	   
+	   
+	   
+	   
 	<div class="table_contain">
     	<table>
     	 	<tr>
@@ -136,9 +149,16 @@
 
     		<tr>
 	    	    <td><%= rs.getInt("ROWNO") %></td>
+	    	    
+    	    <% 
+    	    if(login_id.equals("admin")){ %>
+				<td> <a href="user_change.jsp?login_id=<%= login_id %>&user_id=<%= rs.getString("LOGIN_ID") %>"> <%= rs.getString("LOGIN_ID") %> </a> </td>	   
+                <% }
+            else{ %>
+                <td><%= rs.getString("LOGIN_ID") %></td>
+                <% } %>
 	    	    <!-- LOGIN_ID가 sql문에서 getString으로 가져온건데, 이걸 클릭하면 user_chage.jsp 화면으로 이동. 
-	    	          ?부터시작되는 문장을 옆에 붙여줘야 원하는 user에 대한 수정+삭제가 가능합니다.  -->
-	    		<td> <a href="user_change.jsp?login_id=<%= login_id %>&user_id=<%= rs.getString("LOGIN_ID") %>"> <%= rs.getString("LOGIN_ID") %> </a> </td>	   
+	    	          ?부터시작되는 문장을 옆에 붙여줘야 원하는 user에 대한 수정+삭제가 가능합니다.  -->	   
 	    		<td><%= rs.getString("LOGIN_NAME") %></td>
 	    		<td><%= rs.getString("SABUN_ID") %></td>
 	    		<td><%= rs.getString("DEPART_NM") %></td>

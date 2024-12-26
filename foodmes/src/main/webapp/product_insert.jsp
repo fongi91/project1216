@@ -15,9 +15,7 @@
 	String item_nm = request.getParameter("item_nm");
 	String item_stand = request.getParameter("item_stand");	
 	String item_price = request.getParameter("item_price");
-	Integer item_priceNum = Integer.parseInt(item_price);
 	String cust_price = request.getParameter("cust_price");
-	Integer cust_priceNum = Integer.parseInt(cust_price);
 	String bigo = request.getParameter("bigo");
 	String write_id = request.getParameter("write_id");
 	String write_dt = request.getParameter("write_dt");
@@ -36,8 +34,8 @@
     			pstmt.setString(1, item_cd);
     			pstmt.setString(2, item_nm);
     			pstmt.setString(3, item_stand);
-    			pstmt.setInt(4, item_priceNum);
-    			pstmt.setInt(5, cust_priceNum);
+    			pstmt.setString(4, item_price);
+    			pstmt.setString(5, cust_price);
     			pstmt.setString(6, bigo);
     			pstmt.setString(7, write_id);
     			//pstmt.setString(8, write_dt);

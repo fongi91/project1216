@@ -12,7 +12,7 @@
    //한글 처리
 	request.setCharacterEncoding("UTF-8");
 	
-	String cloginId = request.getParameter("loginid");
+	String login_id = request.getParameter("loginid");
 	
 	
 	String cuserPassword = request.getParameter("passwd");
@@ -50,7 +50,7 @@
 		
 		
 		pstmt.setTimestamp(9, currentTimestamp);
-		pstmt.setString(10, cloginId);
+		pstmt.setString(10, login_id);
 		
 		rows = pstmt.executeUpdate();
 		
@@ -63,10 +63,10 @@
 %>
 <script>
 	if(<%= rows %> == 1){
-		alert("<%= cloginId %> 이(가) 수정되었습니다.");
+		alert("<%= login_id %> 이(가) 수정되었습니다.");
 	} else{
 		alert("수정 실패하였습니다.");
 	}
-	window.location.href = './user_manage.jsp';
+	window.location.href = './user_manage.jsp?login_id=<%= login_id %>';
 </script>
 

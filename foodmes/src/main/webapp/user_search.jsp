@@ -5,7 +5,7 @@
 <%
     // 한글 처리
     request.setCharacterEncoding("UTF-8");
-	String login_id = request.getParameter("login_id");
+    String login_id = request.getParameter("login_id");
 
     // 페이지 크기와 현재 페이지 번호 받기
     String postCountStr = request.getParameter("numb");
@@ -47,9 +47,9 @@
 
         // 4. 실제 데이터 가져오기 쿼리 (검색어에 맞춰서 필터링)
         String sql = "SELECT * FROM ("
-	               + "SELECT rownum AS ROWNO, LOGIN_ID, LOGIN_NAME, SABUN_ID, DEPART_NM, JIK_NM, MOBILE_NO, "
-	               + "WRITE_ID, to_char(write_dt, 'YYYY/MM/DD HH24:MI:SS') AS WRITE_DT "
-	               + "FROM MEUSER "
+                   + "SELECT rownum AS ROWNO, LOGIN_ID, LOGIN_NAME, SABUN_ID, DEPART_NM, JIK_NM, MOBILE_NO, "
+                   + "WRITE_ID, to_char(write_dt, 'YYYY/MM/DD HH24:MI:SS') AS WRITE_DT "
+                   + "FROM MEUSER "
                    + "WHERE LOGIN_NAME LIKE ?) "
                    + "WHERE ROWNO BETWEEN ? AND ?";
         
@@ -69,68 +69,34 @@
     <title>사조떡볶이</title>
     <link rel="stylesheet" href="./css/main_style.css">
     <style>
-        .button {
-            margin: 20px;
-        }
 
-        .button-container {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-        }
-
-        .pagination {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .pagination a {
-            margin: 0 5px;
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            text-decoration: none;
-            color: #000;
-        }
-
-        .pagination a.active {
-            background-color: #575757;
-            color: white;
-        }
     </style>
 </head>
 
 <body>
     <div class="sidebar">
         <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
-        <div class = "sidebar1">
-        	<a href="./user_manage.jsp?login_id=<%= login_id %>">사용자관리</a>
-        	<a href="./product_manage.jsp?login_id=<%= login_id %>">제품기준관리</a>
-        	<a href="./material_manage.jsp?login_id=<%= login_id %>">자재기준관리</a>
-        	<a href="#contact">Version</a>
+        <div class="sidebar1">
+            <a href="./user_manage.jsp?login_id=<%= login_id %>">사용자관리</a>
+            <a href="./product_manage.jsp?login_id=<%= login_id %>">제품기준관리</a>
+            <a href="./material_manage.jsp?login_id=<%= login_id %>">자재기준관리</a>
+            <a href="#contact">Version</a>
         </div>
     </div>
 
     <div class="content">
-        <h1>사용자관리</h1>
-
-        <!-- 생성 버튼을 <hr> 위쪽으로 이동 -->
-        <div class="button-container">
-            <button id="user_add_button" class = "create-button">생성</button>
+        <div class="header">
+            <h1>사용자관리</h1>
+            <%-- 로그인한 사용자가 "admin"일 경우에만 사용자 생성 버튼을 보이게 함 --%>
+            <% if ("admin".equals(login_id)) { %>
+                <button id="user_add_button" class="btn-user-add">사용자 생성</button>
+            <% } else { %>
+                <p>관리자만 사용자를 생성할 수 있습니다.</p>
+            <% } %>
         </div>
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const button = document.getElementById("user_add_button");
-                button.addEventListener("click", function () {
-                    window.location.href = "./user_add?login_id=<%= login_id %>.jsp"; // 자재 추가 페이지로 이동
-                });
-            });
-        </script>
-
         <hr>
-
         <div class="right-side">
-            <form action="material_manage.jsp" method="GET">
+            <form action="user_manage.jsp" method="GET">
                 show
                 <select name="numb" id="numb" onchange="this.form.submit()">
                     <option value="10" <% if ("10".equals(request.getParameter("numb"))) out.print("selected"); %>>10</option>
@@ -139,11 +105,10 @@
                 </select>
                 entries
             </form>
-
-            <form id="search-form" action="material_manage.jsp" method="GET">
+            <form id="search-form" action="./user_search.jsp?login_id=<%= login_id %>" method="POST">
                 <span class="search">
-                    <input class="searchbox" type="search" id="search" name="search1" placeholder="자재검색" value="<%= search %>">
-                    <button class="search-button" type="submit"></button>
+                    <input class="searchbox" type="search" id="search" name="search1" placeholder="이름을 입력하세요">
+                    <button class="search-button"></button>
                 </span>
             </form>
         </div>
@@ -152,35 +117,34 @@
     <div class="table_contain">
         <table>
             <tr>
-				<th>NO</th>
-    			<th>ID</th>
-    			<th>이름</th>
-    			<th>사원번호</th>
-    			<th>부서번호</th>
-    			<th>직급</th>
-    			<th>mobile</th>
-    			<th>등록자</th>
-    			<th>등록일시</th>
+                <th>NO</th>
+                <th>ID</th>
+                <th>이름</th>
+                <th>사원번호</th>
+                <th>부서</th>
+                <th>직급</th>
+                <th>mobile</th>
+                <th>등록자</th>
+                <th>등록일시</th>
             </tr>
-
-            <%
-                // 데이터 출력
-                while (rs.next()) {
-            %>
-	    	<tr>
-	    	    <td><%= rs.getInt("ROWNO") %></td>
-	    		<td> <a href="user_change.jsp?login_id=<%= rs.getString("LOGIN_ID") %>"> <%= rs.getString("LOGIN_ID") %> </a> </td>	
-	    		<td><%= rs.getString("LOGIN_NAME") %></td>
-	    		<td><%= rs.getString("SABUN_ID") %></td>
-	    		<td><%= rs.getString("DEPART_NM") %></td>
-	    		<td><%= rs.getString("JIK_NM") %></td>
-	    		<td><%= rs.getString("MOBILE_NO") %></td>
-	    		<td><%= rs.getString("WRITE_ID") %></td>
-	    		<td><%= rs.getString("WRITE_DT") %></td>
-	    	</tr>
-	    	<%
-                }
-            %>
+            <%-- 데이터 출력 --%>
+            <% while (rs.next()) { %>
+                <tr>
+                    <td><%= rs.getInt("ROWNO") %></td>
+                    <% if (login_id.equals("admin")) { %>
+                        <td><a href="user_change.jsp?login_id=<%= login_id %>&user_id=<%= rs.getString("LOGIN_ID") %>"><%= rs.getString("LOGIN_ID") %></a></td>
+                    <% } else { %>
+                        <td><%= rs.getString("LOGIN_ID") %></td>
+                    <% } %>
+                    <td><%= rs.getString("LOGIN_NAME") %></td>
+                    <td><%= rs.getString("SABUN_ID") %></td>
+                    <td><%= rs.getString("DEPART_NM") %></td>
+                    <td><%= rs.getString("JIK_NM") %></td>
+                    <td><%= rs.getString("MOBILE_NO") %></td>
+                    <td><%= rs.getString("WRITE_ID") %></td>
+                    <td><%= rs.getString("WRITE_DT") %></td>
+                </tr>
+            <% } %>
         </table>
     </div>
 
@@ -190,7 +154,7 @@
             for (int i = 1; i <= totalPages; i++) {
                 String activeClass = (i == currentPage) ? "active" : "";
         %>
-        <a href="?login_id=<%= login_id %>page=<%= i %>&numb=<%= postCount %>&search1=<%= search %>" class="<%= activeClass %>"><%= i %></a>
+        <a href="?login_id=<%= login_id %>&page=<%= i %>&numb=<%= postCount %>&search1=<%= search %>" class="<%= activeClass %>"><%= i %></a>
         <%
             }
         %>

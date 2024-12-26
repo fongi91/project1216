@@ -10,7 +10,7 @@
 <%
    //한글 처리
    request.setCharacterEncoding("UTF-8");
-   String login_id = request.getParameter("login_id");
+
 
     
     /* getParameter 는 jsp에서 제공하는 메서드로, http 요청에서 파라미터 값을 가져옵니다.
@@ -26,7 +26,8 @@
      
        3. request.getParameter("login_id")의 "login_id"는      
        mamage.jsp파일의 a href="user_change.jsp?login_id= " 에서  ?다음에 나오는 log_id와 매칭됩니다.   */
-	String loginId = request.getParameter("login_id");
+    String login_id = request.getParameter("login_id");
+    String user_id = request.getParameter("user_id");
 
 	
 	// input 태그에 초기값으로 기존 정보를 보여주기 위해 null값 변수를 만들었습니다.
@@ -52,7 +53,7 @@
 	int rows = 0;
 	try{
 		PreparedStatement pstmt = conn.prepareStatement(sqlSelect);
-		pstmt.setString(1, loginId);
+		pstmt.setString(1, user_id);
 		ResultSet rs = pstmt.executeQuery();
 		if(rs.next()){
 			// null값이였던 변수들은 sql문으로 가져온 각 컬럼에 해당하는 값으로 저장됩니다.
@@ -138,7 +139,7 @@
 						<input class = input_in id="inputField" name="sabun" autofocus value="<%= cuserSabun %>" />
 					</div>
 				</div>
-				<div class="box">	
+				<div class="box">
 				  	<div class="box1">
 				  		<p class="table_nm">부서</p>
 						<input class = input_in id="inputField" name="depart_nm" autofocus value="<%= cuserDepartnm %>" />
@@ -147,15 +148,15 @@
 						<p class="table_nm">직급</p>
 						<input class = input_in id="inputField" name="jik_nm" autofocus value="<%= cuserJiknm %>" />
 					</div>
-				</div>	
-				<div class="box">
+				</div>
+				<div class="box">	
 					<div class="box1">
 						<p class="table_nm">이메일</p>
-						<input class = input_in id="inputField" name="email" autofocus value="<%= cuserEmail %>" />
+						<input class = input_in id="emailField" name="email" autofocus value="<%= cuserEmail %>" disabled />
 					</div>	
 					<div class="box1">
 						<p class="table_nm">휴대전화번호</p>
-						<input class = input_in id="inputField" name="mobile" autofocus value="<%= cuserMobile %>" />
+						<input class = input_in id="inputField" name="mobile" autofocus value="<%= cuserMobile %>" disabled />
 					</div>
 				</div>
 				<div class="box">	
@@ -206,10 +207,10 @@
               	cancelForm.action = "./user_manage.jsp?login_id=<%= login_id %>";  
             	});
             
-            
-            const inputField = document.getElementById('inputField');
-            if(login_id !== "admin"){
-            	inputField.disabled ;
+            const login_id = "<%= login_id %>";
+            const emailField = document.getElementById('emailField');
+            if(login_id === "admin"){
+            	emailField.disabled = false;
             } 
                       
         });

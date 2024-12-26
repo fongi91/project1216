@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="./css/crud_style.css">  
 </head>
 <body>
-<form id ="search-form" action="./material_insert.jsp" method="POST">
+<form id ="form" method="POST">
     <div class="sidebar">
         <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
         <div class = "sidebar1">
@@ -99,40 +99,44 @@
        		<div class="box">
        			<div class="box1">
        				<p class="table_nm">등록자</p>
-       				<input class="input_in" id="write_id" name="write_id" disabled>
+       				<input class="input_in" id="write_id" name="write_id">
        			</div>
        			<div class="box1">
       				<p class="table_nm">등록일시</p>
-       				<input class="input_in" id="write_dt" name="write_dt" disabled>      
+       				<input class="input_in" id="write_dt" name="write_dt">      
        			</div>
        		</div>
        
-       		<div class="box">
-       			<div class="box1">
-       				<button class="register_button">저장</button>
-       			</div>
-       			<div class="box1">
-       				<button class="register_button">취소</button>
-       			</div>
-       		</div>
        	</div>
+       	<div class="box">
+       		<div class="box1">
+       			<button id = "material_insert_button" class="register_button">추가</button>
+       		</div>
+      		<div class="box1">
+       			<button id = "material_cancel_button"class="register_button">취소</button>
+       		</div>
+       </div>
     </div>
     <script>
      	document.addEventListener("DOMContentLoaded", function(event) {   // 웹 페이지가 로딩되면 실행
-     		const insertButton = document.getElementById("product_insert_button");  // 버튼 요소 가져오기
-     		const cancelButton = document.getElementById("product_cancel_button");  // 버튼 요소 가져오기
+     		const insertButton = document.getElementById("material_insert_button");  // 버튼 요소 가져오기
+     		const cancelButton = document.getElementById("material_cancel_button");  // 버튼 요소 가져오기
         
      		const insertForm = document.getElementById('form');
      		insertButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
-       			insertForm.action = "./product_insert.jsp?loginId=<%= login_id %>";  
+       			insertForm.action = "./material_insert.jsp?login_id=<%= login_id %>";  
      		});   
      
     
      		const cancelForm = document.getElementById('form');
      		cancelButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
-	   			cancelForm.action = "./product_manage.jsp?loginId=<%= login_id %>";  
+	   			cancelForm.action = "./material_manage.jsp?login_id=<%= login_id %>";  
      		});       
-    	});    
+    	}); 
+     	
+     	
+
+     	
     </script>    
     
     

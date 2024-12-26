@@ -119,7 +119,6 @@
 	        
 	         const cancelForm = document.getElementById('form');
 	         cancelButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
-	           	alert("입려이 취소되었습니다.");
 	         	cancelForm.action = "./product_manage.jsp?login_id=<%= login_id %>";  
 	         	});       
 	        });    

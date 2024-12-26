@@ -26,7 +26,7 @@
 	Connection conn = DBManager.getDBConnection();
 	
 	String sql = "INSERT INTO MEMATERIAL(MAT_CD, MAT_NM, STAND_CALL, WEIGHT_CALL, STAND_BIGO, CUST_CD, IN_PRICE, BIGO, WRITE_ID, WRITE_DT) " 
-			   + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			   + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE)";
 	int rows = 0;
 	
 	try{
@@ -41,7 +41,7 @@
 		pstmt.setString(7, matinprice);
 		pstmt.setString(8, matbigo);
 		pstmt.setString(9, matwriteid);
-		pstmt.setString(10, matwritedt);
+
 		
 		// sql문 실행
 		// 실제 insert 한 행의 개수로 rows의 값은 1이 됩니다.
@@ -59,5 +59,5 @@
 		} else{
 			alert("필수항목미입력으로 자재추가에 실패하였습니다.");
 		}
-		window.location.href = './material_manage.jsp?login_id=<%= login_id %>';
+		window.location.href = "./material_manage.jsp?login_id=<%= login_id %>";
 	</script>

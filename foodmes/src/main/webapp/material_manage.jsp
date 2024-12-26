@@ -8,9 +8,7 @@
 <%
     // 한글 처리
     request.setCharacterEncoding("UTF-8");
-	String login_id = request.getParameter("login_id");
-
-
+    String login_id = request.getParameter("login_id");
 
     // 페이지 크기와 현재 페이지 번호 받기
     String postCountStr = request.getParameter("numb");
@@ -67,34 +65,46 @@
     <title>사조떡볶이</title>
     <link rel="stylesheet" href="./css/main_style.css">
     <style>
-       
-    .in_price{
-    
-    text-align: right;
-    }
-       
+        .in_price{
+            text-align: right;
+        }
+        
+             .logout {
+            margin-top: 700px;
+        }
+        
+        .loginCheck {
+        	padding-left:20px;
+        }
     </style>
 </head>
 
 <body>
     <div class="sidebar">
         <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
-        <div class = "sidebar1">
-        	<a href="./user_manage.jsp?login_id=<%= login_id %>">사용자관리</a>
-        	<a href="./product_manage.jsp?login_id=<%= login_id %>">제품기준관리</a>
-        	<a href="./material_manage.jsp?login_id=<%= login_id %>">자재기준관리</a>
-        	<a href="#contact">Version</a>
+        <div class="sidebar1">
+            <a href="./user_manage.jsp?login_id=<%= login_id %>">사용자관리</a>
+            <a href="./product_manage.jsp?login_id=<%= login_id %>">제품기준관리</a>
+            <a href="./material_manage.jsp?login_id=<%= login_id %>">자재기준관리</a>
+            <a href="#contact">Version</a>
+            <div class="logout">
+                <p class=loginCheck>현재 로그인: <%= login_id %>님</p>
+                <a href="./login_form.jsp">로그아웃</a>
+            </div>
         </div>
     </div>
 
-
-
     <div class="content">
         <div>
-        	<h1>자재기준관리</h1>
-        	<div class="button">
-            	<button id="user_add_button">자재 생성</button>
-        	</div>
+            <h1>자재기준관리</h1>
+            <div class="button">
+                <%-- 로그인한 사용자가 "admin"일 경우에만 자재 생성 버튼을 보이게 함 --%>
+                <% if ("admin".equals(login_id)) { %>
+                    <button id="user_add_button">자재 생성</button>
+                <% } else { %>
+            
+                <% } %>
+            </div>
         </div>
         
         <hr>
@@ -108,8 +118,8 @@
             });
         </script>
 
-    	<div class="right-side">
-            <form action="material_manage.jsp" method="GET">
+        <div class="right-side">
+            <form action="./material_manage.jsp?login_id=<%= login_id %>" method="GET">
                 show
                 <select name="numb" id="numb" onchange="this.form.submit()">
                     <option value="10" <% if ("10".equals(request.getParameter("numb"))) out.print("selected"); %>>10</option>
@@ -119,7 +129,7 @@
                 entries
             </form>
 
-            <form id="search-form" action="./material_search.jsp" method="POST">
+            <form id="search-form" action="./material_search.jsp?login_id=<%= login_id %>" method="POST">
                 <span class="search">
                     <input class="searchbox" type="search" id="search" name="search1" placeholder="자재검색">
                     <button class="search-button"></button>
@@ -148,9 +158,14 @@
                 // 데이터 출력
                 while (rs.next()) {
             %>
+             
             <tr>
                 <td><%= rs.getInt("ROWNO") %></td>
+                <% if ("admin".equals(login_id)) { %>
                 <td> <a href="material_change.jsp?login_id=<%= login_id %>&MATCD=<%= rs.getString("MAT_CD") %>"><%= rs.getString("MAT_CD") %></a></td>
+                <% } else { %>
+                <td><%= rs.getString("MAT_CD") %></td>
+                <% } %>
                 <td><%= rs.getString("MAT_NM") %></td>
                 <td><%= rs.getString("STAND_CALL") %></td>
                 <td><%= rs.getString("WEIGHT_CALL") %></td>
@@ -158,12 +173,14 @@
                 <td><%= rs.getString("CUST_CD") %></td>
                 <td class="in_price"><%= rs.getString("IN_PRICE") %></td>
                 <td><%= rs.getString("BIGO") %></td>
-    		<td><%= rs.getString("WRITE_ID") == null ? "" : rs.getString("WRITE_ID") %></td>
-    		<td><%= rs.getString("WRITE_DT") == null ? "" : rs.getString("WRITE_DT") %></td>
+                <td><%= rs.getString("WRITE_ID") == null ? "" : rs.getString("WRITE_ID") %></td>
+                <td><%= rs.getString("WRITE_DT") == null ? "" : rs.getString("WRITE_DT") %></td>
             </tr>
             <%
                 }
             %>
+                
+
         </table>
     </div>
 

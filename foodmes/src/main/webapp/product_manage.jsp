@@ -93,13 +93,18 @@
     </div>
 
     <div class="content">
-    	<div>
-        	<h1>제품기준관리</h1>
-        	<div class="button">
-            	<button id="user_add_button">제품 생성</button>
-        	</div>
+        <div>
+            <h1>제품기준관리</h1>
+            <div class="button-container">
+                <%-- 로그인한 사용자가 "admin"일 경우에만 제품 생성 버튼을 보이게 함 --%>
+                <% if ("admin".equals(login_id)) { %>
+                    <button id="user_add_button">제품 생성</button>
+                <% } else { %>
+                    <p>관리자만 제품을 생성할 수 있습니다.</p>
+                <% } %>
+            </div>
         </div>
-        
+
         <hr>
         
         <script>
@@ -122,17 +127,17 @@
                 entries
             </form>
 
-            <form id="search-form" action="./product_search.jsp" method="POST">
-                <span class="search">
-                    <input class="searchbox" type="search" id="search" name="search1" placeholder="제품명">
-                    <button class="search-button"></button>
-                </span>
-            </form>
+
+            <form id ="search-form" action="./product_search.jsp?login_id=<%= login_id %>" method="POST">
+	        	<span class="search">
+					<input class="searchbox" type="search" id="search" name="search1" placeholder="제품명">
+					<button class="search-button"></button>
+				</span>
+            </form>	
+            
+            
         </div>
     </div>
- 
-
-
 	<div class="table_contain">
     	<table>
     	 	<tr>
@@ -157,11 +162,17 @@
     	    <td><%= rs.getString("ROWNO") %></td>
     	    
     	    
-    		<td> <a href="product_change.jsp?login_id=<%= login_id %>&item_cd=<%= rs.getString("ITEM_CD") %>"> <%= rs.getString("ITEM_CD") %> </a> </td>	
+    	    <% 
+    	    if(login_id.equals("admin")){ %>
+                <td> <a href="product_change.jsp?login_id=<%= login_id %>&item_cd=<%= rs.getString("ITEM_CD") %>"> <%= rs.getString("ITEM_CD") %> </a> </td>
+                <% }
+            else{ %>
+                <td><%= rs.getString("ITEM_CD") %></td>
+                <% } %>
     		<td><%= rs.getString("ITEM_NM") %></td>
     		<td><%= rs.getString("ITEM_STAND") %></td>    		
-    		<td class="item_price"><%= rs.getString("ITEM_PRICE") %></a></td>
-    		<td class="cust_price"><%= rs.getString("CUST_PRICE") %></a></td>
+    		<td class="item_price"><%= rs.getString("ITEM_PRICE") %></td>
+    		<td class="cust_price"><%= rs.getString("CUST_PRICE") %></td>
     		<td><%= rs.getString("BIGO") %></td>
     		<td><%= rs.getString("WRITE_ID") == null ? "" : rs.getString("WRITE_ID") %></td>
     		<td><%= rs.getString("WRITE_DT") == null ? "" : rs.getString("WRITE_DT") %></td>
