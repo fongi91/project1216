@@ -19,9 +19,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>사조떡볶이</title>
-    <link rel="stylesheet" href="./css/main_style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="./css/main_style.css">
     <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Doto:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Doto:wght@100..900&family=Nanum+Pen+Script&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Doto:wght@100..900&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
@@ -126,14 +126,14 @@
         h2 {
             font-family: "Orbit", serif;
         }
-
-        .logout {
-            margin-top: 700px;
-        }
         
-        .loginCheck {
-        	padding-left:20px;
-        }
+		.logout {
+            margin-top: 700px;
+ 		}
+ 
+		.loginCheck {
+   		padding-left:20px;
+		}
 
     </style>
 </head>
@@ -155,13 +155,13 @@
 
     <div class="container">
         <div class="buttonbox-container">
-            <div class="buttonbox" id="user" onclick="window.location.href='user_manage.jsp'">
+            <div class="buttonbox" id="user" onclick="window.location.href='user_manage.jsp?login_id=<%= login_id %>'">
                 <button type="button" class="nametec">USER</button>
             </div>
-            <div class="buttonbox" id="item" onclick="window.location.href='product_manage.jsp'">
+            <div class="buttonbox" id="item" onclick="window.location.href='product_manage.jsp?login_id=<%= login_id %>'">
                 <button type="button" class="nametec">ITEM</button>
             </div>
-            <div class="buttonbox" id="material" onclick="window.location.href='material_manage.jsp'">
+            <div class="buttonbox" id="material" onclick="window.location.href='material_manage.jsp?login_id=<%= login_id %>'">
                 <button type="button" class="nametec">MATERIAL</button>
             </div>
         </div>

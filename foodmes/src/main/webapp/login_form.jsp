@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사조떡볶이</title>
 <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -24,13 +24,13 @@
  <form id="login-form" action="./login.jsp" method="POST">
 <h1>로그인</h1>
 	 <div class="id_password">
-	 	<input type="text" name="user_id" id="user_id" autocomplete="off" required><label for ="user_id"></label>        
+	 	<input type="text" name="user_id" id="user_id" autocomplete="off" required  placeholder="id"><label for ="user_id"></label>        
 
 	 </div>
 	 <div class="id_password">
-		<input type="password" name="user_pwd" id="user_pwd" autocomplete="off" required><label for = "user_pwd"></label>
+		<input type="password" name="user_pwd" id="user_pwd" autocomplete="off" required placeholder="password"><label for = "user_pwd" ></label>
 	 </div>
-<input type="checkbox" id="accept">아이디 저장
+
 <button id="login-button" style="cursor: pointer;">로그인</button>
 </form>
 <div class="image-container">

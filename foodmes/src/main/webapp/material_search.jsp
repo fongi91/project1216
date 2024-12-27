@@ -125,7 +125,7 @@
         </script>
 
         <div class="right-side">
-            <form action="./material_manage.jsp?login_id=<%= login_id %>" method="GET">
+      	 	 <form action="./material_search.jsp?login_id=<%= login_id %>" method="POST">
                 show
                 <select name="numb" id="numb" onchange="this.form.submit()">
                     <option value="10" <% if ("10".equals(request.getParameter("numb"))) out.print("selected"); %>>10</option>

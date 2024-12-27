@@ -12,7 +12,8 @@
 	request.setCharacterEncoding("UTF-8");
 	
 	// 파라미터 값 확인: <input class = input_in id="id" name="id" autofocus value .... 의 name에서 가져왔습니다.)
-	String login_id = request.getParameter("loginid");
+	String login_id = request.getParameter("login_id");
+	String user_id = request.getParameter("user_id");
 
 
 	Connection conn = DBManager.getDBConnection();
@@ -21,7 +22,7 @@
 	int rows = 0;
 	try{
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, login_id);
+		pstmt.setString(1, user_id);
 		
 		rows = pstmt.executeUpdate();
 		DBManager.dbClose(conn, null, null);
@@ -31,7 +32,7 @@
 %>
 <script>
 	if(<%= rows %> == 1){
-		alert("<%= login_id %> 이(가) 삭제되었습니다.");
+		alert("<%= user_id %> 이(가) 삭제되었습니다.");
 	} else{
 		alert("삭제 실패하였습니다.");
 	}

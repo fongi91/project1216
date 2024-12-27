@@ -20,16 +20,29 @@
 
 <title>사조떡볶이</title>
 <link rel="stylesheet" href="./css/crud_style.css">  
+<style>
+		.logout {
+            margin-top: 700px;
+ 		}
+ 
+		.loginCheck {
+   		padding-left:20px;
+		}
+</style> 
 </head>
 <body>
 <body>
     <div class="sidebar">
         <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
-        <div class = "sidebar1">
-        	<a href="./user_manage.jsp?login_id=<%= login_id %>">사용자관리</a>
-        	<a href="./product_manage.jsp?login_id=<%= login_id %>">제품기준관리</a>
-        	<a href="./material_manage.jsp?login_id=<%= login_id %>">자재기준관리</a>
-        	<a href="#contact">Version</a>
+        <div class="sidebar1">
+            <a href="./user_manage.jsp?login_id=<%= login_id %>">사용자관리</a>
+            <a href="./product_manage.jsp?login_id=<%= login_id %>">제품기준관리</a>
+            <a href="./material_manage.jsp?login_id=<%= login_id %>">자재기준관리</a>
+            <a href="#contact">Version</a>
+            <div class="logout">
+                <p class=loginCheck>현재 로그인: <%= login_id %>님</p>
+                <a href="./login_form.jsp">로그아웃</a>
+            </div>
         </div>
     </div>
 

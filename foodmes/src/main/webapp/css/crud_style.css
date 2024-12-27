@@ -132,7 +132,6 @@ hr{
 }
    
 
-
 #write_id {
 
    background-color: rgb(197, 198, 216);
@@ -154,3 +153,12 @@ hr{
       width:100%;
 	}
  }
+ 
+.logout {
+            margin-top: 700px;
+ }
+ 
+.loginCheck {
+   padding-left:20px;
+}
+ 

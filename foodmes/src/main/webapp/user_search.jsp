@@ -69,7 +69,13 @@
     <title>사조떡볶이</title>
     <link rel="stylesheet" href="./css/main_style.css">
     <style>
-
+		.logout {
+            margin-top: 700px;
+ 		}
+ 
+		.loginCheck {
+   		padding-left:20px;
+		}
     </style>
 </head>
 
@@ -81,6 +87,10 @@
             <a href="./product_manage.jsp?login_id=<%= login_id %>">제품기준관리</a>
             <a href="./material_manage.jsp?login_id=<%= login_id %>">자재기준관리</a>
             <a href="#contact">Version</a>
+            <div class="logout">
+                <p class=loginCheck>현재 로그인: <%= login_id %>님</p>
+                <a href="./login_form.jsp">로그아웃</a>
+            </div>
         </div>
     </div>
 
@@ -96,7 +106,7 @@
         </div>
         <hr>
         <div class="right-side">
-            <form action="user_manage.jsp" method="GET">
+     	  	 <form action="./user_search.jsp?login_id=<%= login_id %>" method="POST">
                 show
                 <select name="numb" id="numb" onchange="this.form.submit()">
                     <option value="10" <% if ("10".equals(request.getParameter("numb"))) out.print("selected"); %>>10</option>
@@ -154,11 +164,22 @@
             for (int i = 1; i <= totalPages; i++) {
                 String activeClass = (i == currentPage) ? "active" : "";
         %>
-        <a href="?login_id=<%= login_id %>&page=<%= i %>&numb=<%= postCount %>&search1=<%= search %>" class="<%= activeClass %>"><%= i %></a>
+      <a href="?login_id=<%= login_id %>&page=<%= i %>&numb=<%= postCount %>" class="<%= activeClass %>"><%= i %></a>
         <%
             }
         %>
     </div>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {   // 웹 페이지가 로딩되면 실행
+            const button = document.getElementById("user_add_button");  // 버튼 요소 가져오기
+            button.addEventListener("click", function () {  // 버튼을 클릭하면 실행
+              	window.location.href = './user_add.jsp?login_id=<%= login_id %>';
+              	// window.open("./user_add.jsp", "팝업창이름", "width=650, height=500, left=100, top=200");
+              	// newRegister();   // 새로운 주제를 등록하는 함수 호출  
+            	});
+        });      
+    </script>
+    
 </body>
 </html>
 

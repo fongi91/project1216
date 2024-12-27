@@ -6,6 +6,9 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="com.company1.DBManager" %>
+
+
+
 <%
    //한글 처리
    request.setCharacterEncoding("UTF-8");
@@ -66,17 +69,28 @@
 <title>사조떡볶이</title>
 <link rel="stylesheet" href="./css/main_style.css"> 
 <style>
+		.logout {
+            margin-top: 700px;
+ 		}
+ 
+		.loginCheck {
+   		padding-left:20px;
+		}
     
 </style>   
 </head>
 <body>
     <div class="sidebar">
         <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
-        <div class = "sidebar1">
-        	<a href="./user_manage.jsp?login_id=<%= login_id %>">사용자관리</a>
-        	<a href="./product_manage.jsp?login_id=<%= login_id %>">제품기준관리</a>
-        	<a href="./material_manage.jsp?login_id=<%= login_id %>">자재기준관리</a>
-        	<a href="#contact">Version</a>
+        <div class="sidebar1">
+            <a href="./user_manage.jsp?login_id=<%= login_id %>">사용자관리</a>
+            <a href="./product_manage.jsp?login_id=<%= login_id %>">제품기준관리</a>
+            <a href="./material_manage.jsp?login_id=<%= login_id %>">자재기준관리</a>
+            <a href="#contact">Version</a>
+            <div class="logout">
+                <p class=loginCheck>현재 로그인: <%= login_id %>님</p>
+                <a href="./login_form.jsp">로그아웃</a>
+            </div>
         </div>
     </div>
     
@@ -101,16 +115,15 @@
         
         
 	    <div class="right-side">
-	    
-	     <form action="user_manage.jsp" method="GET">
-    show
-    <select name="numb" id="numb" onchange="this.form.submit()">
-        <option value="10" <% if ("10".equals(request.getParameter("numb"))) out.print("selected"); %>>10</option>
-        <option value="20" <% if ("20".equals(request.getParameter("numb"))) out.print("selected"); %>>20</option>
-        <option value="30" <% if ("30".equals(request.getParameter("numb"))) out.print("selected"); %>>30</option>
-    </select>
-    entries
-</form>      
+	    	<form action="./user_manage.jsp?login_id=<%= login_id %>" method="POST">
+			    show
+			    <select name="numb" id="numb" onchange="this.form.submit()">
+			        <option value="10" <% if ("10".equals(request.getParameter("numb"))) out.print("selected"); %>>10</option>
+			        <option value="20" <% if ("20".equals(request.getParameter("numb"))) out.print("selected"); %>>20</option>
+			        <option value="30" <% if ("30".equals(request.getParameter("numb"))) out.print("selected"); %>>30</option>
+			    </select>
+			    entries
+			</form>      
 	      <!-- ******************** 이부분 추가하시면 됩니다.(각 구역별 select 모두 출력되는 코드에서 수정하시는겁니다.)******************** 
 	      form 태그 생성 후 action="./검색결과 출력 할 페이지" method="POST" 
 	      input 태그 작성 간 name을 잘 써주세요. 출력페이지에서 받아와야됩니다. -->
