@@ -1,10 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="com.company1.DBManager" %>
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사조떡볶이</title>
+    <link rel="stylesheet" href="./css/main_style.css">
+    <style>
+        .in_price{
+            text-align: right;
+        }      
+    </style>
+</head>
+
+<body
 <%
     // 한글 처리
     request.setCharacterEncoding("UTF-8");
@@ -25,7 +41,6 @@
 
     try {
         conn = DBManager.getDBConnection();
-
         // 전체 데이터 개수 계산 (총 데이터 수를 알아야 페이지 수를 계산할 수 있음)
         String countSql = "SELECT COUNT(*) FROM MEMATERIAL";
         pstmt = conn.prepareStatement(countSql);
@@ -50,36 +65,12 @@
                    + "WHERE rownum <= ?) "
                    + "WHERE ROWNO >= ?";
         
-        pstmt = conn.prepareStatement(sql);
+		pstmt = conn.prepareStatement(sql);
         pstmt.setInt(1, endIndex);  // rownum을 endIndex까지 설정
         pstmt.setInt(2, startIndex);  // rownum을 startIndex 이상으로 설정
         rs = pstmt.executeQuery();
 %>
-
-<!DOCTYPE html>
-<html lang="ko">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사조떡볶이</title>
-    <link rel="stylesheet" href="./css/main_style.css">
-    <style>
-        .in_price{
-            text-align: right;
-        }
-        
-        .loginCheck {
-        	padding-left:20px;
-        }
-        .logout {
-            margin-top: 700px;
- 		}
-        
-    </style>
-</head>
-
-<body>
+>
     <div class="sidebar">
         <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
         <div class="sidebar1">
@@ -102,11 +93,11 @@
                 <% if ("admin".equals(login_id)) { %>
                     <button id="user_add_button">자재 생성</button>
                 <% } else { %>
-            
+            		<p>관리자만 자재를 생성할 수 있습니다.</p>
                 <% } %>
             </div>
         </div>
-        
+ 
         <hr>
 
         <script>
@@ -177,10 +168,13 @@
                 <td><%= rs.getString("WRITE_DT") == null ? "" : rs.getString("WRITE_DT") %></td>
             </tr>
             <%
-                }
-            %>
-                
-
+        }
+		DBManager.dbClose(conn, pstmt, rs);//자원정리
+	} catch(SQLException se) {
+		se.printStackTrace();
+		System.err.println("테이블 조회 에러");
+	}  
+	%>
         </table>
     </div>
 
@@ -197,14 +191,4 @@
         %>
     </div>
 </body>
-
 </html>
-
-<%
-    } catch (SQLException se) {
-        se.printStackTrace();
-    } finally {
-        // 자원 정리 (finally 블록에서 반드시 닫아야 함)
-        DBManager.dbClose(conn, pstmt, rs);
-    }
-%>

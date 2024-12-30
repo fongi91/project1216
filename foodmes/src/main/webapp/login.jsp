@@ -37,7 +37,7 @@
             %>
             <script>
                alert('로그인 성공.');
-               location.href = "./main.jsp?login_id=<%= rs.getString("LOGIN_ID")%>";
+               location.href = "./main.jsp?login_id=<%= userId %>";
             </script>
             <%
          } else {

@@ -7,11 +7,20 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="com.company1.DBManager" %>
 <%@ page import="java.sql.Timestamp" %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사조떡볶이</title>
+<link rel="stylesheet" href="./css/crud_style.css">  
+<style>
+</style> 
+</head>
+<body>
 <%
    //한글 처리
    request.setCharacterEncoding("UTF-8");
-
-
     
     /* getParameter 는 jsp에서 제공하는 메서드로, http 요청에서 파라미터 값을 가져옵니다.
        크롬 주소창을 보면  "?"다음에 "단어1"="단어2" 가 나옵니다.
@@ -79,24 +88,6 @@
 
 
 %>    
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>사조떡볶이</title>
-<link rel="stylesheet" href="./css/crud_style.css">  
-<style>
-		.logout {
-            margin-top: 700px;
- 		}
- 
-		.loginCheck {
-   		padding-left:20px;
-		}
-</style> 
-</head>
-<body>
     <div class="sidebar">
         <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
         <div class="sidebar1">

@@ -40,7 +40,7 @@
 		pstmt.setString(6, userJiknm);
 		pstmt.setString(7, userEmail);
 		pstmt.setString(8, userMobile);
-		pstmt.setString(9, userWriteid);
+		pstmt.setString(9, "admin");
 		
 		// sql문 실행
 		// 실제 insert 한 행의 개수로 rows의 값은 1이 됩니다.

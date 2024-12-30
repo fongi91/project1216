@@ -21,13 +21,6 @@
 <title>사조떡볶이</title>
 <link rel="stylesheet" href="./css/crud_style.css">  
 <style>
-		.logout {
-            margin-top: 700px;
- 		}
- 
-		.loginCheck {
-   		padding-left:20px;
-		}
 </style> 
 </head>
 <body>
@@ -111,7 +104,7 @@
 				<div class="box">	
 					<div class="box1">
 						<p class="table_nm">등록자</p>
-						<input class = input_in id="write_id" name="write_id"/>
+						<input class = input_in id="write_id" name="write_id" value="admin" disabled/>
 					</div>	 
 				</div>
 			</div>

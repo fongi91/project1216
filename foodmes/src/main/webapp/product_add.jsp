@@ -21,14 +21,7 @@
 <title>사조떡볶이</title>
 <link rel="stylesheet" href="./css/crud_style.css">  
 <style>
-		.logout {
-       	 	margin-top: 700px;
- 		}
- 
-		.loginCheck {
-   			padding-left:20px;
-		}
-	
+
 </style> 
 </head>
 <body>
@@ -127,7 +120,7 @@
 	         
 	         const insertForm = document.getElementById('form');
 	         insertButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
-       			insertForm.action = "./product_insert.jsp?loginId=<%= login_id %>";  
+       			insertForm.action = "./product_insert.jsp?login_id=<%= login_id %>";  
 	         	});   
 	         
 	        

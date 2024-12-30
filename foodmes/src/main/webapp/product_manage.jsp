@@ -6,6 +6,25 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="com.company1.DBManager" %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>사조떡볶이</title>
+<link rel="stylesheet" href="./css/main_style.css"> 
+<style>
+        .item_price{
+       	text-align: right;
+        }
+        .cust_price{
+        text-align: right;
+        }
+</style>
+</head>
+<body>
+
 <%
     // 한글 처리
     request.setCharacterEncoding("UTF-8");
@@ -60,31 +79,7 @@
         pstmt.setInt(2, startIndex);  // rownum을 startIndex 이상으로 설정
         rs = pstmt.executeQuery();
 %>  
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>사조떡볶이</title>
-<link rel="stylesheet" href="./css/main_style.css"> 
-<style>
-        .item_price{
-       	text-align: right;
-        }
-        .cust_price{
-        text-align: right;
-        }
-        .logout {
-            margin-top: 700px;
- 		}
- 
-		.loginCheck {
-   		padding-left:20px;
-		}
-</style>
-</head>
-<body>
     <div class="sidebar">
         <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
         <div class="sidebar1">
@@ -160,9 +155,6 @@
     		</tr>
     	
     	<%
-
-   
-    
     			while(rs.next()){
     	%>
     	<tr>
@@ -182,12 +174,16 @@
     		<td class="cust_price"><%= rs.getString("CUST_PRICE") %></td>
     		<td><%= rs.getString("BIGO") %></td>
     		<td><%= rs.getString("WRITE_ID") == null ? "" : rs.getString("WRITE_ID") %></td>
-    		<td><%= rs.getString("WRITE_DT") == null ? "" : rs.getString("WRITE_DT") %></td>
-
-		
+    		<td><%= rs.getString("WRITE_DT") == null ? "" : rs.getString("WRITE_DT") %></td>		
     	</tr>
     	<% 
     			}
+		//자원정리
+		DBManager.dbClose(conn, pstmt, rs);
+		} catch(SQLException se) {
+			se.printStackTrace();
+			System.err.println("테이블 조회 에러");
+		}     	   		
     	%>
     	
     	</table>
@@ -210,17 +206,3 @@
      
 </body>
 </html>
-
-
-
-   
-<%
-    } catch (SQLException se) {
-       
-        se.printStackTrace();
-		System.err.println("테이블 조회 에러");
-    } finally {
-        // 자원 정리 (finally 블록에서 반드시 닫아야 함)
-        DBManager.dbClose(conn, pstmt, rs);
-    }
-%>

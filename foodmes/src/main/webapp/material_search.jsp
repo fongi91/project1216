@@ -4,6 +4,20 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="com.company1.DBManager" %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사조떡볶이</title>
+    <link rel="stylesheet" href="./css/main_style.css">
+    <style>
+        .in_price{
+            text-align: right;
+        } 
+    </style>
+</head>
+<body>
 
 <%
     // 한글 처리
@@ -62,30 +76,7 @@
         rs = pstmt.executeQuery();
 %>
 
-<!DOCTYPE html>
-<html lang="ko">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사조떡볶이</title>
-    <link rel="stylesheet" href="./css/main_style.css">
-       <style>
-        .in_price{
-            text-align: right;
-        }
-        
-             .logout {
-            margin-top: 700px;
-        }
-        
-        .loginCheck {
-        	padding-left:20px;
-        }
-    </style>
-</head>
-
-<body>
     <div class="sidebar">
         <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
         <div class="sidebar1">
@@ -108,7 +99,7 @@
                 <% if ("admin".equals(login_id)) { %>
                     <button id="user_add_button">자재 생성</button>
                 <% } else { %>
-            
+            		<p>관리자만 자재를 생성할 수 있습니다.</p>
                 <% } %>
             </div>
         </div>
@@ -184,6 +175,13 @@
             </tr>
             <%
                 }
+    		DBManager.dbClose(conn, pstmt, rs);
+    		} catch(SQLException se) {
+    			se.printStackTrace();
+    			System.err.println("테이블 조회 에러");
+    		}           
+            
+            
             %>
                 
 
@@ -205,12 +203,3 @@
 </body>
 
 </html>
-
-<%
-    } catch (SQLException se) {
-        se.printStackTrace();
-    } finally {
-        // 자원 정리 (finally 블록에서 반드시 닫아야 함)
-        DBManager.dbClose(conn, pstmt, rs);
-    }
-%>

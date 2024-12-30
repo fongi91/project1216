@@ -19,122 +19,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>사조떡볶이</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="./css/main_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Doto:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Doto:wght@100..900&family=Nanum+Pen+Script&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Doto:wght@100..900&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Doto:wght@100..900&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Orbit&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
     <style>
-        .container {
-            display: flex;
-            flex-grow: 1;
-            margin-left: 200px;
-            padding: 20px;
-            height: 100vh;
-            flex-direction: column;
-            justify-content: flex-start;
-        }
-
-        .buttonbox-container {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 0px;
-        }
-
-        .buttonbox {
-            width: 500px;
-            height: 600px;
-            cursor: pointer;
-            border-radius: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: black;
-            background-color: #d1740a;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .buttonbox:hover {
-            width: 80%;
-            background-color: #d1740a;
-        }
-
-        .buttonbox:hover .nametec {
-            background-color: #d1740a;
-            border-style: none;
-            transition: all 0.3s ease-in-out;
-        }
-
-        #user {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), white 100%), url("./images/people.png");
-            background-repeat: no-repeat;
-            background-position: right;
-            background-size: cover;
-        }
-
-        #item {
-            background: linear-gradient(to bottom, rgba(219, 122, 10, 0.3), white 100%), url("./images/oip2.png");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-        }
-
-        #material {
-            background: linear-gradient(to bottom, rgba(199, 17, 17, 0.3), white 100%), url("./images/food.png");
-            background-repeat: no-repeat;
-            background-position: right;
-            background-size: cover;
-        }
-
-        .copyright {
-            text-align: right;
-            font-size: small;
-            padding: 10px;
-            width: 100%;
-            position: fixed;
-            bottom: 0;
-        }
-
-        .nametec {
-            width: 100%;
-            height: 50px;
-            background-color: #575757;
-            color: white;
-            font-size: 30px;
-            font-family: "Afacad Flux", serif;
-            font-optical-sizing: auto;
-            font-weight: bold;
-            text-align: center;
-            border-style: none;
-        }
-
-        .nametec:hover {
-            background-color: #d1740a;
-        }
-
-        .textbox {
-            font-size: 30px;
-            font-family: "Nanum Pen Script", serif;
-            text-align: center;
-            line-height: 1.6;
-            color: #333;
-            margin-top: 0px;
-        }
-
-        h2 {
-            font-family: "Orbit", serif;
-        }
-        
-		.logout {
-            margin-top: 700px;
- 		}
- 
-		.loginCheck {
-   		padding-left:20px;
-		}
-
     </style>
 </head>
 

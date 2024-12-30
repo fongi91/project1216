@@ -6,6 +6,18 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="com.company1.DBManager" %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>사조떡볶이</title>
+<link rel="stylesheet" href="./css/crud_style.css">
+<style>
+</style> 
+</head>
+<body>
 <%
    //한글 처리
    request.setCharacterEncoding("UTF-8");
@@ -68,25 +80,7 @@
 
 
 %>     
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>사조떡볶이</title>
-<link rel="stylesheet" href="./css/crud_style.css">
-<style>
-		.logout {
-            margin-top: 700px;
- 		}
- 
-		.loginCheck {
-   		padding-left:20px;
-		}
-</style> 
-</head>
-<body>
     <div class="sidebar">
         <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
         <div class="sidebar1">
@@ -200,9 +194,6 @@
             cancelButton.addEventListener("click", function () {  // 버튼을 클릭하면 실행
               	cancelForm.action = "./product_manage.jsp?login_id=<%= login_id %>";  
             	});
-            
-            
-            
             
             
         });       

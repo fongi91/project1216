@@ -5,20 +5,14 @@
 <%
     // 한글 처리
     request.setCharacterEncoding("UTF-8");
-
-
-	String login_id = request.getParameter("login_id");
+	String login_id = request.getParameter("login_id");	
     // URL에서 전달된 자재 코드(Matcd) 파라미터를 가져옵니다.
     String cmatcd = request.getParameter("Matcd");
-    
-
-    Connection conn = DBManager.getDBConnection();
-    
+    Connection conn = DBManager.getDBConnection(); 
     // DELETE 쿼리 준비
     String sql = "DELETE FROM MEMATERIAL WHERE MAT_CD = ?";
     
-    int rows = 0;  // 삭제된 행의 수
-    
+    int rows = 0;  // 삭제된 행의 수 
     try {
         // PreparedStatement 사용하여 DELETE 쿼리 실행
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -29,7 +23,7 @@
         
         // 연결 종료
         DBManager.dbClose(conn, pstmt, null);
-    } catch (Exception e) {
+    }catch(Exception e) {
         e.printStackTrace();
     }
 %>

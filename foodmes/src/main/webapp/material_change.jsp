@@ -7,29 +7,39 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="com.company1.DBManager" %>
 <%@ page import="java.sql.Timestamp" %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>사조떡볶이</title>
+<link rel="stylesheet" href="./css/crud_style.css">  
+<style>
+</style> 
+</head>
+<body>
+
 <%
    //한글 처리
-   request.setCharacterEncoding("UTF-8");
+    request.setCharacterEncoding("UTF-8");
+	/* getParameter 는 jsp에서 제공하는 메서드로, http 요청에서 파라미터 값을 가져옵니다.
+	크롬 주소창을 보면  "?"다음에 "단어1"="단어2" 가 나옵니다.
+	단어1은 Parameter의 이름, 단어2는 Parameter의 값입니다.
+	getParameter은 Parameter의 값 즉, "앞 페이지에서 단어2를 가져온다"라고 보시면 됩니다. */
+	
+	
+	/* jsp가 getParameter를 사용할 때 자바 코드안에 있는 값을 가져올 수 없어서 HTML 단에서 가져오는데, 
+	1. 대표적인 예로 HTML 태그 내의 name값으로 받아올 수 있습니다.
+	2. button 클릭이벤트 시 data-id 속성값을 받을 수도 있다고 합니다.
+	  ex) <button ~~~ data-id="~~~"></button> 
+	
+	3. request.getParameter("login_id")의 "login_id"는      
+	mamage.jsp파일의 a href="user_change.jsp?login_id= " 에서  ?다음에 나오는 log_id와 매칭됩니다.   */
 	String login_id = request.getParameter("login_id");
 	String matcd = request.getParameter("MATCD");
 
-    
-    /* getParameter 는 jsp에서 제공하는 메서드로, http 요청에서 파라미터 값을 가져옵니다.
-       크롬 주소창을 보면  "?"다음에 "단어1"="단어2" 가 나옵니다.
-       단어1은 Parameter의 이름, 단어2는 Parameter의 값입니다.
-       getParameter은 Parameter의 값 즉, "앞 페이지에서 단어2를 가져온다"라고 보시면 됩니다. */
-   
-      
-    /* jsp가 getParameter를 사용할 때 자바 코드안에 있는 값을 가져올 수 없어서 HTML 단에서 가져오는데, 
-       1. 대표적인 예로 HTML 태그 내의 name값으로 받아올 수 있습니다.
-       2. button 클릭이벤트 시 data-id 속성값을 받을 수도 있다고 합니다.
-         ex) <button ~~~ data-id="~~~"></button> 
-     
-       3. request.getParameter("login_id")의 "login_id"는      
-       mamage.jsp파일의 a href="user_change.jsp?login_id= " 에서  ?다음에 나오는 log_id와 매칭됩니다.   */
 
-
-	
 	// input 태그에 초기값으로 기존 정보를 보여주기 위해 null값 변수를 만들었습니다.
 	// 이후 코드 작성 중 sql에서 받아온 수정 전의 정보들이 하단의 변수들 안에 저장될 예정입니다.
     String cmatcd = null;
@@ -72,32 +82,12 @@
 		}
 		rows = pstmt.executeUpdate();
 		DBManager.dbClose(conn, null, null);
-	} catch(Exception e) {
+	}catch(Exception e) {
 		e.printStackTrace();
 	}
 
-
-
 %>    
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>사조떡볶이</title>
-<link rel="stylesheet" href="./css/crud_style.css">  
-<style>
-		.logout {
-            margin-top: 700px;
- 		}
- 
-		.loginCheck {
-   		padding-left:20px;
-		}
-</style> 
-</head>
-<body>
     <div class="sidebar">
         <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
         <div class="sidebar1">
@@ -121,6 +111,7 @@
  	   
 	<form id ="changeForm" method="POST">
 		<div class="create_contain">
+		
 			<div class="essential_in">
 			  	<h2>필수정보</h2>
 			  	<hr class="hr">
@@ -134,9 +125,7 @@
 						<input class = "input_in" id="Matnm" name="Matnm" autofocus value="<%= cmatnm   %>"/>
 			  		</div>	  		
 				</div>
-			</div>
-		
-			
+			</div>		
 			
 			<div class="detail_in">
 				<h2>상세정보</h2>
@@ -193,6 +182,8 @@
       					</div>
       				</div>
 				</div>
+				
+				
 			</div>
     
 		<script>
@@ -220,10 +211,8 @@
             
             
         });       
-   </script>
+  		</script>
   
 </form>
-
-
 </body>
 </html>

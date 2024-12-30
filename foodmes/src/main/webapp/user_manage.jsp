@@ -7,6 +7,20 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="com.company1.DBManager" %>
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>사조떡볶이</title>
+<link rel="stylesheet" href="./css/main_style.css"> 
+<style>
+
+    
+</style>   
+</head>
+<body>
 
 
 <%
@@ -60,26 +74,7 @@
         rs = pstmt.executeQuery();
 %>
     
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>사조떡볶이</title>
-<link rel="stylesheet" href="./css/main_style.css"> 
-<style>
-		.logout {
-            margin-top: 700px;
- 		}
- 
-		.loginCheck {
-   		padding-left:20px;
-		}
-    
-</style>   
-</head>
-<body>
     <div class="sidebar">
         <h3><a href="./main.jsp?login_id=<%= login_id %>">사조떡볶이 제조시스템</a></h3>
         <div class="sidebar1">
@@ -93,7 +88,6 @@
             </div>
         </div>
     </div>
-    
     
     
     <div class="content">
@@ -112,6 +106,17 @@
             
         <hr>
         
+        
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {   // 웹 페이지가 로딩되면 실행
+            const button = document.getElementById("user_add_button");  // 버튼 요소 가져오기
+            button.addEventListener("click", function () {  // 버튼을 클릭하면 실행
+              	window.location.href = './user_add.jsp?login_id=<%= login_id %>';
+              	// window.open("./user_add.jsp", "팝업창이름", "width=650, height=500, left=100, top=200");
+              	// newRegister();   // 새로운 주제를 등록하는 함수 호출  
+            	});
+        });      
+   		 </script>
         
         
 	    <div class="right-side">
@@ -132,16 +137,11 @@
 					<input class="searchbox" type="search" id="search" name="search1" placeholder="이름을 입력하세요">
 					<button class="search-button"></button>
 				</span>
-            </form>	
-	        
-	     
+            </form>	        
 	    </div>
 	</div>
 	   
-	   
-	   
-	   
-	   
+	     
 	<div class="table_contain">
     	<table>
     	 	<tr>
@@ -192,16 +192,7 @@
     	</table>
     </div>
           
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {   // 웹 페이지가 로딩되면 실행
-            const button = document.getElementById("user_add_button");  // 버튼 요소 가져오기
-            button.addEventListener("click", function () {  // 버튼을 클릭하면 실행
-              	window.location.href = './user_add.jsp?login_id=<%= login_id %>';
-              	// window.open("./user_add.jsp", "팝업창이름", "width=650, height=500, left=100, top=200");
-              	// newRegister();   // 새로운 주제를 등록하는 함수 호출  
-            	});
-        });      
-    </script>
+
     
     
     <!-- 페이지 -->
